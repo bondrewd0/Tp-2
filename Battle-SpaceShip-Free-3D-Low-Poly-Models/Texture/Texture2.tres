@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ckcnf2vso1dbb"]
+
+[ext_resource type="Texture2D" uid="uid://cibs0offwlid5" path="res://Battle-SpaceShip-Free-3D-Low-Poly-Models/Texture/T_Spase_blue.png" id="1_bg6bo"]
+
+[resource]
+albedo_texture = ExtResource("1_bg6bo")
