@@ -1,4 +1,5 @@
 extends RigidBody3D
+@export var Health:int=5
 @export var Target:Node3D=null
 @export var Speed: float = 100.0
 @export var attack_distance: float = 10.0  # Distance at which to start circling
@@ -38,3 +39,15 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func _on_fire_zone_body_exited(body: Node3D) -> void:
 	print("fuera")
 	in_range=false
+
+func _on_hitbox_area_entered(area: Area3D) -> void:
+	var check_bullet=area.get_parent()
+	if check_bullet is Bullet:
+		print("Hit")
+		take_damage()
+
+func take_damage():
+	Health-=1
+	print(Health)
+	if Health<=0:
+		queue_free()

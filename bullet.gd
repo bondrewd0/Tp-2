@@ -1,5 +1,5 @@
 extends RigidBody3D
-
+class_name Bullet
 
 func _on_de_spawner_timeout() -> void:
 	queue_free()

@@ -8,12 +8,15 @@ extends Node3D
 @export var Vel_Torre:float=0.5
 @onready var cooldown: Timer = $Cooldown
 var target_locked:bool=false
+var can_shoot:bool=true
 const BULLET = preload("res://bullet.tscn")
 func shoot():
+	print("fire!!")
 	var bullet_inst=BULLET.instantiate()
 	get_parent().add_sibling(bullet_inst)
 	bullet_inst.transform=BulletSpawnPos.global_transform
 	bullet_inst.linear_velocity=BulletSpawnPos.global_transform.basis.z*-1*20
+	can_shoot=false
 
 
 
@@ -43,19 +46,23 @@ func ajustar_torreta(delta:float):
 
 
 func _on_radar_body_entered(body: Node3D) -> void:
-	#print("target locked")
+	print("target locked", body)
 	Target=body
 
 
 func _on_lock_on_body_entered(body: Node3D) -> void:
-	#print("opne fire!")
+	print("opne fire!")
 	target_locked=true
-	shoot()
-	cooldown.start()
+	if can_shoot:
+		shoot()
+	if cooldown.is_stopped():
+		cooldown.start()
 
 
 func _on_cooldown_timeout() -> void:
+	can_shoot=true
 	if not target_locked:
+		print("no target")
 		return
 	shoot()
 	cooldown.start()
@@ -63,7 +70,8 @@ func _on_cooldown_timeout() -> void:
 
 func _on_lock_on_body_exited(body: Node3D) -> void:
 	target_locked=false
-
+	print("target not in range")
 
 func _on_radar_body_exited(body: Node3D) -> void:
+	print("target lost")
 	Target=null
