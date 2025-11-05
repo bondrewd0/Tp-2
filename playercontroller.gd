@@ -1,6 +1,6 @@
 # Example for CharacterBody3D arcade movement
 extends CharacterBody3D
-
+class_name PlayerShip
 @export var speed = 5.0
 @export var rotation_speed = 2.0
 @export var Rotating_friction:float=0.5
@@ -41,3 +41,7 @@ func _physics_process(delta):
 		else:
 			velocity = input_dir.normalized() * speed*backwards_speed*Rotating_friction
 	move_and_slide()
+
+
+func _on_hitbox_area_entered(area: Area3D) -> void:
+	print("Player hit")

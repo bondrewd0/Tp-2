@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://buypl3mdlgc3m"]
+[gd_scene load_steps=11 format=4 uid="uid://buypl3mdlgc3m"]
 
 [ext_resource type="Script" uid="uid://dt76rty87f85e" path="res://test_dummy.gd" id="1_qutxh"]
 [ext_resource type="Material" uid="uid://bxkvqrigh8j54" path="res://Battle-SpaceShip-Free-3D-Low-Poly-Models/Texture/textura1.tres" id="2_s30xx"]
 [ext_resource type="Material" uid="uid://ckcnf2vso1dbb" path="res://Battle-SpaceShip-Free-3D-Low-Poly-Models/Texture/Texture2.tres" id="3_bjqmr"]
+[ext_resource type="PackedScene" uid="uid://dvy0pmm07vow1" path="res://EnemyCannon.tscn" id="4_e6d4v"]
+[ext_resource type="PackedScene" uid="uid://ja8rbh65mfik" path="res://EnemyBullet.tscn" id="5_qp131"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a8m7s"]
 size = Vector3(9.13928, 1, 16.4637)
@@ -47,7 +49,7 @@ radius = 23.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_qutxh"]
 size = Vector3(9.13928, 1, 16.4637)
 
-[node name="TestDummy" type="RigidBody3D"]
+[node name="EnemyT1" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 11
 gravity_scale = 0.0
@@ -82,6 +84,14 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.332336, 0, 1.08002)
 shape = SubResource("BoxShape3D_qutxh")
+
+[node name="EnemyCannon" parent="." instance=ExtResource("4_e6d4v")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 1.26806, 0.57418, 0)
+Bullet_path = ExtResource("5_qp131")
+
+[node name="EnemyCannon2" parent="." instance=ExtResource("4_e6d4v")]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -1.45601, 0.57418, 0)
+Bullet_path = ExtResource("5_qp131")
 
 [connection signal="body_entered" from="FireZone" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="FireZone" to="." method="_on_fire_zone_body_exited"]

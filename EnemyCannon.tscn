@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvy0pmm07vow1"]
+
+[ext_resource type="Script" uid="uid://cs61hej4ybwk" path="res://test_cannon.gd" id="1_tt7e2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_u7m54"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_by8t7"]
+albedo_color = Color(0.607369, 0, 0.128787, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_y11kk"]
+material = SubResource("StandardMaterial3D_by8t7")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u7m54"]
+size = Vector3(1, 10, 29)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_by8t7"]
+size = Vector3(30, 10, 30)
+
+[node name="EnemyCannon" type="Node3D" node_paths=PackedStringArray("TurretBase", "TurretCanon", "BulletSpawnPos")]
+script = ExtResource("1_tt7e2")
+TurretBase = NodePath("Base")
+TurretCanon = NodePath("Base/Turret")
+BulletSpawnPos = NodePath("Base/Turret/BulletSpawnPos")
+Vel_Torre = 0.2
+
+[node name="Base" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_u7m54")
+
+[node name="Turret" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.016084, 1.48261)
+mesh = SubResource("CylinderMesh_y11kk")
+skeleton = NodePath("../..")
+
+[node name="BulletSpawnPos" type="Marker3D" parent="Base/Turret"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.053, -4.65661e-08)
+gizmo_extents = 3.16
+
+[node name="LockOn" type="Area3D" parent="Base/Turret"]
+transform = Transform3D(1, -1.13319e-15, 0, 0, -4.37114e-08, -1, 1.77636e-15, 1, -4.37114e-08, 0, -3.09166, -1.3411e-07)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Base/Turret/LockOn"]
+transform = Transform3D(1, 0, 0, 0, 1, 3.07049e-21, 0, -4.23516e-22, 1, 0, 0, 10.695)
+shape = SubResource("BoxShape3D_u7m54")
+
+[node name="Radar" type="Area3D" parent="."]
+collision_layer = 32
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Radar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17)
+shape = SubResource("BoxShape3D_by8t7")
+debug_color = Color(0, 0, 0.701961, 1)
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="body_entered" from="Base/Turret/LockOn" to="." method="_on_lock_on_body_entered"]
+[connection signal="body_exited" from="Base/Turret/LockOn" to="." method="_on_lock_on_body_exited"]
+[connection signal="body_entered" from="Radar" to="." method="_on_radar_body_entered"]
+[connection signal="body_exited" from="Radar" to="." method="_on_radar_body_exited"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

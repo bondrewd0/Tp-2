@@ -1,4 +1,5 @@
 extends RigidBody3D
+class_name Enemy_ship
 @export var Health:int=5
 @export var Target:Node3D=null
 @export var Speed: float = 100.0

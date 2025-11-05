@@ -59,6 +59,7 @@ backward={
 3d_physics/layer_3="Enemy"
 3d_physics/layer_4="Player"
 3d_physics/layer_5="Enemybullet"
+3d_physics/layer_6="EnemyRadar"
 
 [rendering]
 
