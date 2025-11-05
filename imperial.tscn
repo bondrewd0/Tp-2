@@ -44,20 +44,24 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ysp6v")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_txcou"]
+size = Vector3(6.42603, 1, 19.3982)
 
 [node name="Nave" type="CharacterBody3D"]
+collision_layer = 8
+collision_mask = 16
 script = ExtResource("1_ppa00")
 
 [node name="Imperial" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 2.5052)
 mesh = SubResource("ArrayMesh_gbbhb")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.277954, 0, 0)
 shape = SubResource("BoxShape3D_txcou")
 
 [node name="TestCannon" parent="." instance=ExtResource("3_ppa00")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -1.56402, 1.73023, -1.40486)
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -1.56402, 1.73023, 1.10034)
 
 [node name="TestCannon2" parent="." instance=ExtResource("3_ppa00")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 1.93536, 1.73023, -1.40486)
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 1.93536, 1.73023, 1.10034)
