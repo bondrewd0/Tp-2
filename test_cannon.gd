@@ -15,7 +15,7 @@ func shoot():
 	#print("fire!!")
 	var bullet_inst=Bullet_path.instantiate()
 	#print(bullet_inst)
-	get_parent().add_sibling(bullet_inst)
+	get_parent().get_parent().add_sibling(bullet_inst)
 	bullet_inst.transform=BulletSpawnPos.global_transform
 	bullet_inst.linear_velocity=BulletSpawnPos.global_transform.basis.z*-1*20
 	can_shoot=false

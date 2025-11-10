@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://n56ye2bqgusy"]
+[gd_scene load_steps=11 format=3 uid="uid://n56ye2bqgusy"]
 
 [ext_resource type="PackedScene" uid="uid://cs2y4ovu8rrsm" path="res://imperial.tscn" id="1_ppyta"]
 [ext_resource type="PackedScene" uid="uid://dadxnsxi1f87y" path="res://Station.tscn" id="3_6uqi0"]
 [ext_resource type="Texture2D" uid="uid://chent7dbo3kka" path="res://plain_starfield_1.png" id="4_ppyta"]
 [ext_resource type="PackedScene" uid="uid://s8403hqg2k0" path="res://target.tscn" id="4_ykrsh"]
 [ext_resource type="PackedScene" uid="uid://buypl3mdlgc3m" path="res://Enemy.tscn" id="5_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://clqjxb1q3xlfl" path="res://CombatZone.tscn" id="6_g14j6"]
+[ext_resource type="PackedScene" uid="uid://dv4myiaf02uuk" path="res://SpaceStation2.tscn" id="7_vbegm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ykrsh"]
 panorama = ExtResource("4_ppyta")
@@ -41,7 +43,13 @@ environment = SubResource("Environment_vbegm")
 
 [node name="Target" parent="." instance=ExtResource("4_ykrsh")]
 
-[node name="EnemyT1" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("5_ykrsh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5371, 0, 0)
-Target = NodePath("../Nave")
+[node name="CombatZone" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -89.5313)
+Station = NodePath("SpaceStation2")
+
+[node name="EnemyT1" parent="CombatZone" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240265, 0, -45.7913)
+Speed = 7.0
 circle_radius = 20.0
+
+[node name="SpaceStation2" parent="CombatZone" instance=ExtResource("7_vbegm")]

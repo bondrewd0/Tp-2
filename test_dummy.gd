@@ -1,15 +1,24 @@
 extends RigidBody3D
 class_name Enemy_ship
-@export var Health:int=5
+@export var MaxHealth:int=5
 @export var Target:Node3D=null
 @export var Speed: float = 100.0
 @export var attack_distance: float = 10.0  # Distance at which to start circling
 @export var circle_radius: float = 8.0     # Desired orbit radius
 @export var orbit_speed: float = 2.0       # How fast to circle around
+@export var OriginPoint:Vector3=Vector3.ZERO
 var in_range:bool=false
+var current_health:int=0
+signal destroyed(self_reference:Enemy_ship)
+func _ready() -> void:
+	current_health=MaxHealth
+	GlobalStuff.player_away.connect(stop_chase)
+
 func _physics_process(delta: float) -> void:
-	if not Target: return
-	
+	if not Target: 
+		if OriginPoint!=Vector3.ZERO:
+			return_to_origin()
+		return
 	var target_pos: Vector3 = Target.global_position
 	var to_target = target_pos - global_position
 	var distance = to_target.length()
@@ -32,6 +41,7 @@ func _physics_process(delta: float) -> void:
 		var look_direction = linear_velocity.normalized()
 		var target_transform = global_transform.looking_at(global_position + look_direction, Vector3.UP)
 		global_transform = global_transform.interpolate_with(target_transform, 5.0 * delta)
+
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	print("dentro")
 	in_range=true
@@ -48,7 +58,29 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 		take_damage()
 
 func take_damage():
-	Health-=1
-	print(Health)
-	if Health<=0:
+	current_health-=1
+	print(current_health)
+	if current_health<=0:
+		destroyed.emit(self)
 		queue_free()
+
+func stop_chase():
+	print("stopping")
+	Target=null
+	in_range=false
+
+func return_to_origin():
+	var to_origin = OriginPoint - global_position
+	# Approach behavior - move directly toward target
+	var direction = to_origin.normalized()
+	var distance = to_origin.length()
+	if linear_velocity.length() > 0.1:  # Only rotate if moving
+		var look_direction = linear_velocity.normalized()
+		var target_transform = global_transform.looking_at(global_position + look_direction, Vector3.UP)
+		global_transform = global_transform.interpolate_with(target_transform, 5.0 * 0.05)
+	if distance>3:
+		apply_central_force(direction * Speed)
+
+func Heal_up():
+	current_health=MaxHealth
+	print("healed! ",current_health)
