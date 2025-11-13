@@ -9,9 +9,19 @@ var input_dir = Vector3.ZERO
 var backwards_speed:float=1
 var moving:bool=false
 var rotating:bool=false
+var can_control:bool=true
 func _physics_process(delta):
 	# Get input
-
+	if  Input.is_action_just_pressed("test"):
+		can_control=!can_control
+		print(can_control)
+	if not can_control:
+		if velocity!=Vector3.ZERO:
+			velocity.x=move_toward(velocity.x,0,Friction)
+			velocity.z=move_toward(velocity.z,0,Friction)
+			move_and_slide()
+		else:
+			return
 	if Input.is_action_pressed("forward"):
 		input_dir += -transform.basis.z
 		backwards_speed=1
