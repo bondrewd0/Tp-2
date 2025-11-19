@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://63np5755uwmg"]
+
+[ext_resource type="FontFile" uid="uid://cr01irqo212gm" path="res://Fonts/Geo-Regular.ttf" id="1_ptt5v"]
+
+[resource]
+Button/font_sizes/font_size = 25
+Button/fonts/font = ExtResource("1_ptt5v")
