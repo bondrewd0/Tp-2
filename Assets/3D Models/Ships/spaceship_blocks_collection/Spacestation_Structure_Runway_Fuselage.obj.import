@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://byrs5n6pi8lsn"
+path="res://.godot/imported/Spacestation_Structure_Runway_Fuselage.obj-e4c15d32a78b38355d24aee5ed0bc9ca.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Spacestation_Structure_Runway_Fuselage.obj-e4c15d32a78b38355d24aee5ed0bc9ca.mesh"]
+
+source_file="res://Assets/3D Models/Ships/spaceship_blocks_collection/Spacestation_Structure_Runway_Fuselage.obj"
+dest_files=["res://.godot/imported/Spacestation_Structure_Runway_Fuselage.obj-e4c15d32a78b38355d24aee5ed0bc9ca.mesh", "res://.godot/imported/Spacestation_Structure_Runway_Fuselage.obj-e4c15d32a78b38355d24aee5ed0bc9ca.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

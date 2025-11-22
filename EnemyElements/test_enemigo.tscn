@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt1oe0jd8qcm6"]
+
+[ext_resource type="PackedScene" uid="uid://buypl3mdlgc3m" path="res://EnemyElements/Enemy.tscn" id="1_pcl6c"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_pcl6c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pcl6c"]
+
+[node name="TestEnemigo" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="TestDummy" parent="." node_paths=PackedStringArray("Target") instance=ExtResource("1_pcl6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.5541, 0, 0)
+Target = NodePath("../targetDummy")
+
+[node name="targetDummy" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.10918, 0, 0)
+mesh = SubResource("SphereMesh_pcl6c")
+
+[node name="StaticBody3D" type="RigidBody3D" parent="targetDummy"]
+collision_layer = 8
+collision_mask = 16
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="targetDummy/StaticBody3D"]
+shape = SubResource("BoxShape3D_pcl6c")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.795156, 0.606405, 0, -0.606405, 0.795156, 4.82454, 5.50139, 9.7824)

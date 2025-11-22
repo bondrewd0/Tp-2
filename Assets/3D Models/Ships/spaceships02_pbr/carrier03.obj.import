@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ccia0qjvjfdab"
+path="res://.godot/imported/carrier03.obj-4a6f9e4408f48a4bdf5cbf3cd4b5140e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/carrier03.obj-4a6f9e4408f48a4bdf5cbf3cd4b5140e.mesh"]
+
+source_file="res://Assets/3D Models/Ships/spaceships02_pbr/carrier03.obj"
+dest_files=["res://.godot/imported/carrier03.obj-4a6f9e4408f48a4bdf5cbf3cd4b5140e.mesh", "res://.godot/imported/carrier03.obj-4a6f9e4408f48a4bdf5cbf3cd4b5140e.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="TP 2"
-run/main_scene="uid://n56ye2bqgusy"
+run/main_scene="uid://djynltk46jt3r"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalStuff="*res://GlobalStuff.gd"
+GlobalStuff="*res://Scripts/GlobalStuff.gd"
 
 [input]
 
