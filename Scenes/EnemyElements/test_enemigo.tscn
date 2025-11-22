@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bt1oe0jd8qcm6"]
 
-[ext_resource type="PackedScene" uid="uid://buypl3mdlgc3m" path="res://EnemyElements/Enemy.tscn" id="1_pcl6c"]
+[ext_resource type="PackedScene" uid="uid://buypl3mdlgc3m" path="res://Scenes/EnemyElements/Enemy.tscn" id="1_pcl6c"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_pcl6c"]
 

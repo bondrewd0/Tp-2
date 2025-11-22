@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dt76rty87f85e" path="res://Scripts/test_dummy.gd" id="1_qutxh"]
 [ext_resource type="Material" uid="uid://bxkvqrigh8j54" path="res://Assets/3D Models/Ships/Battle-SpaceShip-Free-3D-Low-Poly-Models/Texture/textura1.tres" id="2_s30xx"]
 [ext_resource type="Material" uid="uid://ckcnf2vso1dbb" path="res://Assets/3D Models/Ships/Battle-SpaceShip-Free-3D-Low-Poly-Models/Texture/Texture2.tres" id="3_bjqmr"]
-[ext_resource type="PackedScene" uid="uid://dvy0pmm07vow1" path="res://EnemyElements/EnemyCannon.tscn" id="4_e6d4v"]
-[ext_resource type="PackedScene" uid="uid://ja8rbh65mfik" path="res://EnemyElements/EnemyBullet.tscn" id="5_qp131"]
+[ext_resource type="PackedScene" uid="uid://dvy0pmm07vow1" path="res://Scenes/EnemyElements/EnemyCannon.tscn" id="4_e6d4v"]
+[ext_resource type="PackedScene" uid="uid://ja8rbh65mfik" path="res://Scenes/EnemyElements/EnemyBullet.tscn" id="5_qp131"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a8m7s"]
 size = Vector3(9.13928, 1, 16.4637)

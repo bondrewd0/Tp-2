@@ -10,7 +10,5 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-func _on_return_pressed() -> void:
-	%MainMenu.show()
-	%SettingsBox.hide()
+func _on_play_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/LevelElements/test.tscn")

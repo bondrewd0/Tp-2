@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=4 uid="uid://cs2y4ovu8rrsm"]
+[gd_scene load_steps=14 format=4 uid="uid://d1f8mukabg4jg"]
 
-[ext_resource type="Script" uid="uid://c85um32f7bejj" path="res://Scripts/playercontroller.gd" id="1_ppa00"]
-[ext_resource type="Texture2D" uid="uid://dpohae8ns6jgg" path="res://Assets/3D Models/Ships/Imperial-20251025T235944Z-1-001/Imperial/glTF/Imperial_Imperial_Orange.png" id="1_txcou"]
-[ext_resource type="PackedScene" uid="uid://dsdkpd6l22k5j" path="res://PlayerElements/test_cannon.tscn" id="3_ppa00"]
-[ext_resource type="PackedScene" uid="uid://bh4r0f0w8oter" path="res://PlayerElements/bullet.tscn" id="4_kwwja"]
+[ext_resource type="Texture2D" uid="uid://dpohae8ns6jgg" path="res://Assets/3D Models/Ships/Imperial-20251025T235944Z-1-001/Imperial/glTF/Imperial_Imperial_Orange.png" id="1_dvdtt"]
+[ext_resource type="FontFile" uid="uid://cr01irqo212gm" path="res://Assets/Fonts/Geo-Regular.ttf" id="2_i5qic"]
+[ext_resource type="Texture2D" uid="uid://chent7dbo3kka" path="res://Scenes/LevelElements/plain_starfield_1.png" id="3_i5qic"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4ig0"]
 resource_name = "Texture"
 cull_mode = 2
-albedo_texture = ExtResource("1_txcou")
+albedo_texture = ExtResource("1_dvdtt")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ysp6v"]
 _surfaces = [{
@@ -25,7 +24,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_gbbhb"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_12kdf"]
 resource_name = "Imperial_Cube_028"
 _surfaces = [{
 "aabb": AABB(-3.86476, -1.3142, -6.66918, 7.72952, 3.30344, 18.5484),
@@ -44,41 +43,143 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ysp6v")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_txcou"]
-size = Vector3(6.42603, 1, 19.3982)
+[sub_resource type="Animation" id="Animation_wfgb2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.05235988, 3.1415927, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../WorldEnvironment:environment:sky_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ppa00"]
-size = Vector3(6.42603, 1, 19.3982)
+[sub_resource type="Animation" id="Animation_i5qic"]
+resource_name = "Sky"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../WorldEnvironment:environment:sky_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.1415927, 0)]
+}
 
-[node name="Nave" type="CharacterBody3D"]
-collision_layer = 8
-collision_mask = 20
-script = ExtResource("1_ppa00")
+[sub_resource type="Animation" id="Animation_xwd2w"]
+resource_name = "updown"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.034906585, -2.9670596, 0), Vector3(-0.034906585, -2.9670596, 0), Vector3(0.034906585, -2.9670596, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wlsky"]
+_data = {
+&"RESET": SubResource("Animation_wfgb2"),
+&"Sky": SubResource("Animation_i5qic"),
+&"updown": SubResource("Animation_xwd2w")
+}
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_12kdf"]
+panorama = ExtResource("3_i5qic")
+
+[sub_resource type="Sky" id="Sky_g14j6"]
+sky_material = SubResource("PanoramaSkyMaterial_12kdf")
+
+[sub_resource type="Environment" id="Environment_xwd2w"]
+background_mode = 2
+sky = SubResource("Sky_g14j6")
+
+[node name="Node3D" type="Node3D"]
 
 [node name="Imperial" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1.73, 2.505)
-mesh = SubResource("ArrayMesh_gbbhb")
+transform = Transform3D(-1, -4.5753548e-09, -8.7302965e-08, 0, 0.9986295, -0.05233596, 8.742278e-08, -0.05233596, -0.9986295, 0, 0, 0)
+mesh = SubResource("ArrayMesh_12kdf")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.277954, 0, 0)
-shape = SubResource("BoxShape3D_txcou")
+[node name="Up Down" type="AnimationPlayer" parent="Imperial"]
+libraries = {
+&"": SubResource("AnimationLibrary_wlsky")
+}
+autoplay = "updown"
 
-[node name="TestCannon" parent="." instance=ExtResource("3_ppa00")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -1.564, 0, 1.1)
-Bullet_path = ExtResource("4_kwwja")
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(-0.4879967, 0, 0.8728455, 0, 1, 0, -0.8728455, 0, -0.4879967, -10.53207, 9.861309, -0.7652168)
+text = "Space 
+Conquest
+"
+font = ExtResource("2_i5qic")
+font_size = 1200
+outline_size = 20
 
-[node name="TestCannon2" parent="." instance=ExtResource("3_ppa00")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 1.935, 0, 1.1)
-Bullet_path = ExtResource("4_kwwja")
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.65458244, 0, 0.7559907, 0, 1, 0, -0.7559907, 0, -0.65458244, 2.7255378, 2.486288, -12.552809)
 
-[node name="Hitbox" type="Area3D" parent="."]
-collision_layer = 8
-collision_mask = 16
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xwd2w")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.277954, 0, 0)
-shape = SubResource("BoxShape3D_ppa00")
-debug_color = Color(0.635294, 0.00392157, 0.956863, 0.890196)
+[node name="Sky" type="AnimationPlayer" parent="WorldEnvironment"]
+root_node = NodePath("../../Imperial/Up Down")
+libraries = {
+&"": SubResource("AnimationLibrary_wlsky")
+}
+autoplay = "Sky"
 
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 21.4069, 0)
+shadow_enabled = true

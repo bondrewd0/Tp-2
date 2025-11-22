@@ -10,5 +10,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Main.tscn")
+#unificarlo en la funcion main_menu.gd
+func _on_return_pressed() -> void:
+	%MainMenu.show()
+	%SettingsBox.hide()

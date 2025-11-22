@@ -4,7 +4,7 @@ var Conquered:bool=false
 var enemies:int=0
 @export var Station:Node3D=null
 var Enemy_list:Array[Enemy_ship]
-const ORIGIN_POINT = preload("res://LevelElements/origin_point.tscn")
+const ORIGIN_POINT = preload("res://Scenes/LevelElements/origin_point.tscn")
 signal entering_combat
 func _ready() -> void:
 	for child in get_children():
