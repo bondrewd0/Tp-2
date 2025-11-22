@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh4r0f0w8oter"]
+[gd_scene load_steps=5 format=3 uid="uid://ja8rbh65mfik"]
 
-[ext_resource type="Script" uid="uid://dlnahwmir12y4" path="res://bullet.gd" id="1_v7oki"]
+[ext_resource type="Script" uid="uid://dlnahwmir12y4" path="res://bullet.gd" id="1_ymxas"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rtl8c"]
 size = Vector3(1, 1, 2.1933)
@@ -11,14 +11,14 @@ top_radius = 0.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_v7oki"]
 
 [node name="Bullet" type="RigidBody3D"]
-collision_layer = 2
-collision_mask = 4
+collision_layer = 16
+collision_mask = 8
 gravity_scale = 0.0
-script = ExtResource("1_v7oki")
+script = ExtResource("1_ymxas")
 
 [node name="HitBox" type="Area3D" parent="."]
-collision_layer = 2
-collision_mask = 4
+collision_layer = 16
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.193268)

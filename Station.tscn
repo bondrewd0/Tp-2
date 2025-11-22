@@ -1,4 +1,6 @@
-[gd_scene load_steps=13 format=4 uid="uid://dadxnsxi1f87y"]
+[gd_scene load_steps=15 format=4 uid="uid://dadxnsxi1f87y"]
+
+[ext_resource type="Script" uid="uid://drds4x2vmfw3q" path="res://SafeZone.gd" id="1_ad2ja"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6svbb"]
 resource_name = "base"
@@ -285,9 +287,27 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_p2k8e")
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pti40"]
+radius = 30.0
+
 [node name="Station" type="Node3D"]
+script = ExtResource("1_ad2ja")
 
 [node name="Mesh_HD" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_nst0e")
 skeleton = NodePath("")
+
+[node name="SafeZone" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafeZone"]
+shape = SubResource("CylinderShape3D_pti40")
+debug_color = Color(0.290196, 0.631373, 0, 0.921569)
+
+[node name="DockPos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5919, 0, 1.18647)
+
+[connection signal="body_entered" from="SafeZone" to="." method="_on_safe_zone_body_entered"]
+[connection signal="body_exited" from="SafeZone" to="." method="_on_safe_zone_body_exited"]
