@@ -1,6 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://n56ye2bqgusy"]
+[gd_scene load_steps=19 format=3 uid="uid://n56ye2bqgusy"]
 
 [ext_resource type="PackedScene" uid="uid://cs2y4ovu8rrsm" path="res://Scenes/PlayerElements/imperial.tscn" id="1_ppyta"]
+[ext_resource type="Script" uid="uid://ci687f5wuaq4s" path="res://Scripts/pivot.gd" id="2_abg7d"]
+[ext_resource type="Script" uid="uid://uspn5mamkeih" path="res://Scripts/camera_3d.gd" id="2_intuu"]
 [ext_resource type="PackedScene" uid="uid://dadxnsxi1f87y" path="res://Scenes/LevelElements/Station.tscn" id="3_6uqi0"]
 [ext_resource type="Texture2D" uid="uid://chent7dbo3kka" path="res://Scenes/LevelElements/plain_starfield_1.png" id="4_ppyta"]
 [ext_resource type="PackedScene" uid="uid://s8403hqg2k0" path="res://Scenes/LevelElements/target.tscn" id="4_ykrsh"]
@@ -66,15 +68,6 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Nave" parent="." instance=ExtResource("1_ppyta")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23, 0, 9.9)
-speed = 10.0
-rotation_speed = 0.4
-Rotating_friction = 0.4
-Friction = 0.05
-
-[node name="Camera3D" type="Camera3D" parent="Nave"]
-transform = Transform3D(1, 0, 0, 0, 0.688355, 0.725374, 0, -0.725374, 0.688355, -0.647, 34.732, 37.281)
-fov = 97.3
 
 [node name="Station" parent="." node_paths=PackedStringArray("BaseUi") instance=ExtResource("3_6uqi0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28579, 0, 58.8861)
@@ -84,6 +77,7 @@ BaseUi = NodePath("../CanvasLayer/BaseUI")
 environment = SubResource("Environment_vbegm")
 
 [node name="Target" parent="." instance=ExtResource("4_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.103348, 0, 0)
 
 [node name="CombatZone" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -89.5313)
@@ -140,6 +134,15 @@ color = Color(0, 0, 0, 0)
 libraries = {
 &"": SubResource("AnimationLibrary_0m0f1")
 }
+
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23, 32.254173, 46.823334)
+script = ExtResource("2_abg7d")
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.688355, 0.725374, 0, -0.725374, 0.688355, -0.6470001, 2.4778252, 0.04386902)
+fov = 97.3
+script = ExtResource("2_intuu")
 
 [connection signal="visibility_changed" from="CanvasLayer/BaseUI" to="CanvasLayer/BaseUI" method="_on_visibility_changed"]
 [connection signal="pressed" from="CanvasLayer/BaseUI/UnDock" to="CanvasLayer/BaseUI/UnDock" method="_on_pressed"]
