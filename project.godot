@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalStuff="*res://Scripts/GlobalStuff.gd"
+UpgradesManager="*res://Scripts/UpgradesManager.gd"
 
 [input]
 

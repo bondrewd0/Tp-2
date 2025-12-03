@@ -22,22 +22,23 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	print(body)
+	
 	if body is PlayerShip:
 		entering_combat.emit()
 		for child in Enemy_list:
 			child.Target=body
-			print("target assigned")
+			
 			GlobalStuff.player_in_combat.emit()
 
 func guard_destroyed(child_ref:Enemy_ship):
 	enemies-=1
 	Enemy_list.erase(child_ref)
-	print(Enemy_list)
+	
 	if enemies<=0:
-		print("coquered")
-		monitorable=false
-		monitoring=false
+		print("conquered")
+		set_deferred("monitorable",false)
+		set_deferred("monitoring",false)
+		
 		Station.set_friendly_mode()
 
 

@@ -5,23 +5,15 @@
 [ext_resource type="Script" uid="uid://uspn5mamkeih" path="res://Scripts/camera_3d.gd" id="2_intuu"]
 [ext_resource type="PackedScene" uid="uid://dadxnsxi1f87y" path="res://Scenes/LevelElements/Station.tscn" id="3_6uqi0"]
 [ext_resource type="Texture2D" uid="uid://chent7dbo3kka" path="res://Scenes/LevelElements/plain_starfield_1.png" id="4_ppyta"]
-[ext_resource type="PackedScene" uid="uid://s8403hqg2k0" path="res://Scenes/LevelElements/target.tscn" id="4_ykrsh"]
 [ext_resource type="PackedScene" uid="uid://buypl3mdlgc3m" path="res://Scenes/EnemyElements/Enemy.tscn" id="5_ykrsh"]
 [ext_resource type="PackedScene" uid="uid://clqjxb1q3xlfl" path="res://Scenes/LevelElements/CombatZone.tscn" id="6_g14j6"]
 [ext_resource type="PackedScene" uid="uid://dv4myiaf02uuk" path="res://Scenes/LevelElements/SpaceStation2.tscn" id="7_vbegm"]
 [ext_resource type="Script" uid="uid://c6a5tl4117sjf" path="res://Scripts/base_uiController.gd" id="8_00tp4"]
 [ext_resource type="Script" uid="uid://dwglkjdb3s4k2" path="res://Scripts/ExitBtn.gd" id="8_ehkex"]
 [ext_resource type="Script" uid="uid://c8ems8abutsdq" path="res://Scripts/dock.gd" id="9_xersf"]
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ykrsh"]
-panorama = ExtResource("4_ppyta")
-
-[sub_resource type="Sky" id="Sky_g14j6"]
-sky_material = SubResource("PanoramaSkyMaterial_ykrsh")
-
-[sub_resource type="Environment" id="Environment_vbegm"]
-background_mode = 2
-sky = SubResource("Sky_g14j6")
+[ext_resource type="PackedScene" uid="uid://dac2p54ovwtl4" path="res://Scenes/LevelElements/upgrade_button.tscn" id="10_5l3ye"]
+[ext_resource type="PackedScene" uid="uid://d0oue6evpydap" path="res://Scenes/LevelElements/vessel_stats.tscn" id="11_intuu"]
+[ext_resource type="PackedScene" uid="uid://v4q0mm7qttq8" path="res://Assets/Items/inventory_display.tscn" id="12_abg7d"]
 
 [sub_resource type="Animation" id="Animation_5tkv4"]
 resource_name = "FadeIn"
@@ -78,21 +70,21 @@ environment = SubResource("Environment_vbegm")
 
 [node name="Target" parent="." instance=ExtResource("4_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.103348, 0, 0)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ykrsh"]
+panorama = ExtResource("4_ppyta")
 
-[node name="CombatZone" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -89.5313)
-Station = NodePath("SpaceStation2")
+[sub_resource type="Sky" id="Sky_g14j6"]
+sky_material = SubResource("PanoramaSkyMaterial_ykrsh")
 
-[node name="EnemyT1" parent="CombatZone" instance=ExtResource("5_ykrsh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240265, 0, -45.7913)
-Speed = 7.0
-circle_radius = 20.0
+[sub_resource type="Environment" id="Environment_vbegm"]
+background_mode = 2
+sky = SubResource("Sky_g14j6")
 
-[node name="SpaceStation2" parent="CombatZone" instance=ExtResource("7_vbegm")]
+[node name="Test" type="Node3D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BaseUI" type="Control" parent="CanvasLayer"]
+[node name="BaseUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("Upgrades")]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -101,22 +93,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_00tp4")
+Upgrades = [NodePath("VBoxContainer/UpgradeButton"), NodePath("VBoxContainer/UpgradeButton2")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/BaseUI"]
+layout_mode = 0
+offset_left = 854.0
+offset_top = 64.0
+offset_right = 1279.0
+offset_bottom = 900.6667
+scale = Vector2(0.7, 0.7)
+theme_override_constants/separation = 24
+
+[node name="UpgradeButton" parent="CanvasLayer/BaseUI/VBoxContainer" instance=ExtResource("10_5l3ye")]
+visible = false
+layout_mode = 2
+UpgradeType = "Speed"
+StatIncrease = 2.0
+
+[node name="UpgradeButton2" parent="CanvasLayer/BaseUI/VBoxContainer" instance=ExtResource("10_5l3ye")]
+visible = false
+layout_mode = 2
+UpgradeType = "Vessel"
 
 [node name="UnDock" type="Button" parent="CanvasLayer/BaseUI"]
 layout_mode = 0
-offset_left = 22.0
-offset_top = 105.0
-offset_right = 81.0
-offset_bottom = 136.0
+offset_left = 11.0
+offset_top = 453.0
+offset_right = 80.0
+offset_bottom = 484.0
 text = "UnDock"
 script = ExtResource("8_ehkex")
 
 [node name="Dock" type="Button" parent="CanvasLayer/BaseUI"]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 206.0
-offset_right = 72.0
-offset_bottom = 225.0
+offset_left = 8.0
+offset_top = 554.0
+offset_right = 61.0
+offset_bottom = 585.0
 text = "Dock"
 script = ExtResource("9_xersf")
 
@@ -143,6 +156,46 @@ script = ExtResource("2_abg7d")
 transform = Transform3D(1, 0, 0, 0, 0.688355, 0.725374, 0, -0.725374, 0.688355, -0.6470001, 2.4778252, 0.04386902)
 fov = 97.3
 script = ExtResource("2_intuu")
+[node name="VesselStats" parent="CanvasLayer/BaseUI" instance=ExtResource("11_intuu")]
+visible = false
+layout_mode = 1
+
+[node name="InventoryDisplay" parent="CanvasLayer" instance=ExtResource("12_abg7d")]
+mouse_filter = 2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 21.4069, 0)
+shadow_enabled = true
+
+[node name="Nave" parent="." instance=ExtResource("1_ppyta")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23, 0, 9.9)
+speed = 10.0
+rotation_speed = 0.4
+Rotating_friction = 0.4
+Friction = 0.05
+
+[node name="Camera3D" type="Camera3D" parent="Nave"]
+transform = Transform3D(1, 0, 0, 0, 0.688355, 0.725374, 0, -0.725374, 0.688355, -0.647, 34.732, 37.281)
+fov = 97.3
+
+[node name="Station" parent="." node_paths=PackedStringArray("BaseUi") instance=ExtResource("3_6uqi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28579, 0, 58.8861)
+BaseUi = NodePath("../CanvasLayer/BaseUI")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vbegm")
+
+[node name="CombatZone" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -89.5313)
+Station = NodePath("SpaceStation2")
+
+[node name="EnemyT1" parent="CombatZone" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240265, 0, 33.45228)
+MaxHealth = 2
+Speed = 7.0
+circle_radius = 20.0
+
+[node name="SpaceStation2" parent="CombatZone" instance=ExtResource("7_vbegm")]
 
 [connection signal="visibility_changed" from="CanvasLayer/BaseUI" to="CanvasLayer/BaseUI" method="_on_visibility_changed"]
 [connection signal="pressed" from="CanvasLayer/BaseUI/UnDock" to="CanvasLayer/BaseUI/UnDock" method="_on_pressed"]

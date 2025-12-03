@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bifelaiohxdpv"]
+
+[ext_resource type="Texture2D" uid="uid://c0xi0jqm68he3" path="res://Assets/2D Icons/Icon14_32.png" id="1_vifw0"]
+[ext_resource type="Script" uid="uid://bh7heuuifesq6" path="res://Assets/Items/item_frame.gd" id="2_jpe43"]
+[ext_resource type="FontFile" uid="uid://dgpvueor5aaqv" path="res://Assets/Fonts/ByteBounce.ttf" id="2_vifw0"]
+
+[sub_resource type="Theme" id="Theme_jpe43"]
+default_font = ExtResource("2_vifw0")
+default_font_size = 30
+
+[node name="ItemFrame" type="TextureRect"]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_vifw0")
+script = ExtResource("2_jpe43")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 50.0
+offset_top = 9.0
+offset_right = 113.0
+offset_bottom = 35.0
+theme = SubResource("Theme_jpe43")
+text = "X100"

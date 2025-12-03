@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqj368ylp1ovm"]
+
+[ext_resource type="Texture2D" uid="uid://bhqvhc688ellt" path="res://Assets/1Bit_UI_pack_byBatuhan/PlusBtn.tres" id="1_e7hox"]
+[ext_resource type="Texture2D" uid="uid://by14ev3mmnvc2" path="res://Assets/1Bit_UI_pack_byBatuhan/plus.png" id="2_yb78i"]
+
+[node name="PlusSimbol" type="TextureRect"]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_e7hox")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 31.0
+offset_bottom = 32.0
+texture = ExtResource("2_yb78i")
+expand_mode = 1

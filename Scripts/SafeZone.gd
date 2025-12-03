@@ -14,6 +14,7 @@ func _on_safe_zone_body_entered(body: Node3D) -> void:
 		player_ref=body
 		print("safe")
 		BaseUi.show()
+		BaseUi.player_ref=player_ref
 		GlobalStuff.player_away.emit()
 		can_dock=true
 	

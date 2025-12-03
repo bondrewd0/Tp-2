@@ -13,6 +13,40 @@ var moving = false
 
 
 func get_input(delta):
+@export var speed = 5.0
+@export var rotation_speed = 2.0
+@export var Rotating_friction:float=0.5
+@export var Friction:float=0.1
+@export var Currrent_Vessel:Vessel=null
+@export var Invontory:ResContainer
+var input_dir = Vector3.ZERO
+var backwards_speed:float=1
+var moving:bool=false
+var rotating:bool=false
+var can_control:bool=true
+
+func _ready() -> void:
+	UpgradesManager.initiate(self)
+	UpgradesManager.place_turrets()
+
+func remove_cannons():
+	for child in get_children():
+		if child is Cannon:
+			remove_child(child)
+			child.queue_free()
+
+func _physics_process(delta):
+	# Get input
+	if  Input.is_action_just_pressed("test"):
+		can_control=!can_control
+		print(can_control)
+	if not can_control:
+		if velocity!=Vector3.ZERO:
+			velocity.x=move_toward(velocity.x,0,Friction)
+			velocity.z=move_toward(velocity.z,0,Friction)
+			move_and_slide()
+		else:
+			return
 	if Input.is_action_pressed("forward"):
 		forward_speed = lerp(forward_speed, max_speed, acceleration * delta)
 		moving = true

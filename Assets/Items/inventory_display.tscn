@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://v4q0mm7qttq8"]
+
+[ext_resource type="Script" uid="uid://c41fx71i3w0a8" path="res://Assets/Items/inventory_display.gd" id="1_ip447"]
+[ext_resource type="PackedScene" uid="uid://bifelaiohxdpv" path="res://Assets/Items/item_frame.tscn" id="1_mapn8"]
+[ext_resource type="Resource" uid="uid://fn27sfhyxa5s" path="res://Assets/Items/Credit.tres" id="3_pox34"]
+[ext_resource type="Resource" uid="uid://6o7k01g02xig" path="res://Assets/Items/MetalScrap.tres" id="4_vu6nu"]
+[ext_resource type="Resource" uid="uid://chvom56qeetus" path="res://Assets/Items/Crystal.tres" id="5_1uar1"]
+[ext_resource type="Resource" uid="uid://bmeau320a0s0u" path="res://Assets/Items/TecChips.tres" id="6_k3jvq"]
+
+[node name="InventoryDisplay" type="Control" node_paths=PackedStringArray("ItemFrames")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ip447")
+ItemFrames = [NodePath("VBoxContainer/ItemFrame"), NodePath("VBoxContainer/ItemFrame2"), NodePath("VBoxContainer/ItemFrame3"), NodePath("VBoxContainer/ItemFrame4")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 125.0
+offset_right = 48.0
+offset_bottom = 265.0
+
+[node name="ItemFrame" parent="VBoxContainer" instance=ExtResource("1_mapn8")]
+layout_mode = 2
+item = ExtResource("3_pox34")
+
+[node name="ItemFrame2" parent="VBoxContainer" instance=ExtResource("1_mapn8")]
+layout_mode = 2
+item = ExtResource("4_vu6nu")
+
+[node name="ItemFrame3" parent="VBoxContainer" instance=ExtResource("1_mapn8")]
+layout_mode = 2
+item = ExtResource("5_1uar1")
+
+[node name="ItemFrame4" parent="VBoxContainer" instance=ExtResource("1_mapn8")]
+layout_mode = 2
+item = ExtResource("6_k3jvq")

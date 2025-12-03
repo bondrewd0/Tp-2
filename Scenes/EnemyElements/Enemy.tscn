@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=4 uid="uid://buypl3mdlgc3m"]
+[gd_scene load_steps=14 format=4 uid="uid://buypl3mdlgc3m"]
 
 [ext_resource type="Script" uid="uid://dt76rty87f85e" path="res://Scripts/test_dummy.gd" id="1_qutxh"]
 [ext_resource type="Material" uid="uid://bxkvqrigh8j54" path="res://Assets/3D Models/Ships/Battle-SpaceShip-Free-3D-Low-Poly-Models/Texture/textura1.tres" id="2_s30xx"]
 [ext_resource type="Material" uid="uid://ckcnf2vso1dbb" path="res://Assets/3D Models/Ships/Battle-SpaceShip-Free-3D-Low-Poly-Models/Texture/Texture2.tres" id="3_bjqmr"]
 [ext_resource type="PackedScene" uid="uid://dvy0pmm07vow1" path="res://Scenes/EnemyElements/EnemyCannon.tscn" id="4_e6d4v"]
-[ext_resource type="PackedScene" uid="uid://ja8rbh65mfik" path="res://Scenes/EnemyElements/EnemyBullet.tscn" id="5_qp131"]
+[ext_resource type="Script" uid="uid://byispcrvjc0fe" path="res://Assets/Items/LootTable.gd" id="5_tv7r2"]
+[ext_resource type="Script" uid="uid://kq6v5q4w4xvg" path="res://Assets/Items/ItemStack.gd" id="6_5ovo6"]
+[ext_resource type="Resource" uid="uid://6o7k01g02xig" path="res://Assets/Items/MetalScrap.tres" id="7_anyeu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a8m7s"]
 size = Vector3(9.13928, 1, 16.4637)
@@ -49,6 +51,11 @@ radius = 23.5
 [sub_resource type="BoxShape3D" id="BoxShape3D_qutxh"]
 size = Vector3(9.13928, 1, 16.4637)
 
+[sub_resource type="Resource" id="Resource_j7plx"]
+script = ExtResource("6_5ovo6")
+item = ExtResource("7_anyeu")
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
 [node name="EnemyT1" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 11
@@ -87,11 +94,13 @@ shape = SubResource("BoxShape3D_qutxh")
 
 [node name="EnemyCannon" parent="." instance=ExtResource("4_e6d4v")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 1.26806, 0.57418, 0)
-Bullet_path = ExtResource("5_qp131")
 
 [node name="EnemyCannon2" parent="." instance=ExtResource("4_e6d4v")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -1.45601, 0.57418, 0)
-Bullet_path = ExtResource("5_qp131")
+
+[node name="Drops" type="Node3D" parent="."]
+script = ExtResource("5_tv7r2")
+Drops = Array[ExtResource("6_5ovo6")]([SubResource("Resource_j7plx")])
 
 [connection signal="body_entered" from="FireZone" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="FireZone" to="." method="_on_fire_zone_body_exited"]
