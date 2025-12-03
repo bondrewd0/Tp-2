@@ -1,0 +1,240 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0oue6evpydap"]
+
+[ext_resource type="Texture2D" uid="uid://c7oj4qay07k0h" path="res://Assets/1Bit_UI_pack_byBatuhan/StatBox.tres" id="1_xtgdv"]
+[ext_resource type="Script" uid="uid://civ2m3isvye4x" path="res://Scenes/LevelElements/stat_box.gd" id="1_yacsq"]
+[ext_resource type="Texture2D" uid="uid://dlgrlbu7yikjm" path="res://Assets/1Bit_UI_pack_byBatuhan/StatBarBack.tres" id="2_6kbfn"]
+[ext_resource type="Texture2D" uid="uid://krb0eb3bq0mf" path="res://Assets/1Bit_UI_pack_byBatuhan/StatBarProgress.tres" id="3_6kbfn"]
+[ext_resource type="Theme" uid="uid://dt61h07kw52uk" path="res://Assets/Fonts/TextsRes.tres" id="4_c4lfw"]
+
+[sub_resource type="Shader" id="Shader_yacsq"]
+code = "/* License CC BY-NC-SA 4.0 Deed */
+/* https://creativecommons.org/licenses/by-nc-sa/4.0/ */
+/* Fork of Ryk's VCR distortion shader */
+/* https://www.shadertoy.com/view/ldjGzV */
+
+shader_type canvas_item;
+
+uniform sampler2D screen_texture: hint_screen_texture, filter_linear_mipmap, repeat_disable;
+
+group_uniforms Image;
+uniform float curvature: hint_range(0., 10., .01) = 2.;
+uniform float skip: hint_range(0., 1., .01) = 1.;
+uniform float image_flicker: hint_range(0., 1., .01) = 1.;
+
+group_uniforms Vignette;
+uniform float vignette_flicker_speed: hint_range(0., 2., .01) = 1.;
+uniform float vignette_strength: hint_range(0., 2., 0.01) = 1.;
+
+group_uniforms Scanlines;
+uniform float small_scanlines_speed: hint_range(0., 10., .01) = 1.;
+uniform float small_scanlines_proximity: hint_range(.01, 2., .01) = 1.;
+uniform float small_scanlines_opacity: hint_range(0.01, 5., .01) = 1.;
+uniform float scanlines_opacity: hint_range(0., 2., .01) = 1.;
+uniform float scanlines_speed: hint_range(0., 5., .01) = 1.;
+uniform float scanline_thickness: hint_range(0., .6, .01) = 0.5;
+uniform float scanlines_spacing: hint_range(0.3, 3., .01) = 1.;
+
+group_uniforms Noise;
+uniform sampler2D noise_texture: filter_linear_mipmap, repeat_enable;
+
+float noise(vec2 p, vec2 uv)
+{
+	float s = texture(noise_texture,vec2(1.*TIME,2.*TIME)*8. + p*1.).x;
+	s *= s;
+	return s;
+}
+
+float onOff(float a, float b, float c)
+{
+	return step(c, sin(TIME + a*cos(TIME*b)));
+}
+
+float ramp(float y, float start, float end)
+{
+	float inside = step(start,y) - step(end,y);
+	float fact = (y-start)/(end-start)*inside;
+	return (1.-fact) * inside;
+}
+
+float stripes(vec2 uv)
+{
+	float noi = noise(uv*vec2(0.5,1.) + vec2(1.,3.), uv)*scanlines_opacity;
+	return ramp(mod(uv.y*4.*scanlines_spacing + TIME*scanlines_speed/(2.*scanlines_spacing)+sin(TIME*scanlines_speed + sin(TIME*scanlines_speed*0.63*scanlines_spacing)),1.),scanline_thickness,.6)*noi;
+}
+
+vec3 getVideo(vec2 uv)
+{
+	vec2 look = uv;
+	float window = 1./(1.+20.*(look.y-mod(TIME/4.,1.))*(look.y-mod(TIME/4.,1.)))*image_flicker;
+	look.x = look.x + sin(look.y*10. + TIME)/50.*onOff(4.,4.,.3)*(1.+cos(TIME*80.))*window;
+	float vShift = 0.4*onOff(2.,3.,.9)*(sin(TIME)*sin(TIME*20.)+(0.5 + 0.1*sin(TIME*200.)*cos(TIME)))*skip;
+	look.y = mod(look.y + vShift, 1.);
+	vec3 video = texture(screen_texture,look).xyz;
+	return video;
+}
+
+vec2 screenDistort(vec2 uv)
+{
+	uv -= vec2(.5,.5);
+	uv = uv*1.2*(1./1.2+curvature*uv.x*uv.x*uv.y*uv.y);
+	uv += vec2(.5,.5);
+	return uv;
+}
+
+void fragment()
+{
+	vec2 uv = FRAGCOORD.xy / (1.0 / SCREEN_PIXEL_SIZE).xy;
+	uv = screenDistort(uv);
+	vec3 video = getVideo(uv);
+	float vigAmt = 3.+.3*sin(TIME*vignette_flicker_speed+1. + 5.*cos(TIME*5.*vignette_flicker_speed+1.));
+	vigAmt *= vignette_strength;
+	float vignette = (1.-vigAmt*(uv.y-.5)*(uv.y-.5))*(1.-vigAmt*(uv.x-.5)*(uv.x-.5));
+
+	video += stripes(uv);
+	video += noise(uv*2., uv)/2.;
+	video *= vignette;
+	video *= (12./small_scanlines_opacity+mod(uv.y*30.*small_scanlines_proximity+TIME*small_scanlines_speed,1.))/13.*small_scanlines_opacity;
+
+	COLOR = vec4(video,1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ab5th"]
+resource_local_to_scene = true
+shader = SubResource("Shader_yacsq")
+shader_parameter/curvature = 0.25999999418848
+shader_parameter/skip = 0.0
+shader_parameter/image_flicker = 0.03999999910592
+shader_parameter/vignette_flicker_speed = 0.13999999687072
+shader_parameter/vignette_strength = 0.80999998189488
+shader_parameter/small_scanlines_speed = 1.0
+shader_parameter/small_scanlines_proximity = 1.0
+shader_parameter/small_scanlines_opacity = 1.0
+shader_parameter/scanlines_opacity = 0.1999999955296
+shader_parameter/scanlines_speed = 0.57999998703584
+shader_parameter/scanline_thickness = 0.5
+shader_parameter/scanlines_spacing = 1.0
+
+[node name="VesselStats" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_yacsq")
+
+[node name="StatBox" type="TextureRect" parent="."]
+modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = 156.0
+offset_right = 209.0
+offset_bottom = 302.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xtgdv")
+
+[node name="SpeedBar" type="TextureProgressBar" parent="StatBox"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_left = 128.0
+offset_top = 38.0
+offset_right = 234.0
+offset_bottom = 48.0
+scale = Vector2(2.045, 2.045)
+texture_under = ExtResource("2_6kbfn")
+texture_progress = ExtResource("3_6kbfn")
+
+[node name="HpBar" type="TextureProgressBar" parent="StatBox"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_left = 128.0
+offset_top = 61.0
+offset_right = 234.0
+offset_bottom = 71.0
+scale = Vector2(2.045, 2.045)
+texture_under = ExtResource("2_6kbfn")
+texture_progress = ExtResource("3_6kbfn")
+
+[node name="SpeedText" type="RichTextLabel" parent="StatBox"]
+unique_name_in_owner = true
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 0
+offset_left = 71.0
+offset_top = 38.0
+offset_right = 140.0
+offset_bottom = 57.0
+theme = ExtResource("4_c4lfw")
+text = "SPEED"
+
+[node name="HPText" type="RichTextLabel" parent="StatBox"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 75.0
+offset_top = 61.0
+offset_right = 144.0
+offset_bottom = 79.0
+theme = ExtResource("4_c4lfw")
+text = "HP"
+
+[node name="Cannons" type="RichTextLabel" parent="StatBox"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 71.0
+offset_top = 81.0
+offset_right = 157.0
+offset_bottom = 99.0
+theme = ExtResource("4_c4lfw")
+text = "CANNONS"
+
+[node name="CannonCount" type="RichTextLabel" parent="StatBox"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 157.0
+offset_top = 81.0
+offset_right = 243.0
+offset_bottom = 99.0
+theme = ExtResource("4_c4lfw")
+text = "2/10"
+
+[node name="Vessel" type="RichTextLabel" parent="StatBox"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 71.0
+offset_top = 106.0
+offset_right = 192.0
+offset_bottom = 124.0
+theme = ExtResource("4_c4lfw")
+text = "VESSEL TYPE"
+
+[node name="VesselType" type="RichTextLabel" parent="StatBox"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 203.0
+offset_top = 106.0
+offset_right = 324.0
+offset_bottom = 124.0
+theme = ExtResource("4_c4lfw")
+text = "1/3"
+
+[node name="Effect" type="ColorRect" parent="StatBox"]
+material = SubResource("ShaderMaterial_ab5th")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 3.0
+offset_right = -13.0
+grow_horizontal = 2
+grow_vertical = 2
