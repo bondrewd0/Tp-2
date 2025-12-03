@@ -7,6 +7,8 @@ class_name Enemy_ship
 @export var circle_radius: float = 8.0     # Desired orbit radius
 @export var orbit_speed: float = 2.0       # How fast to circle around
 @export var OriginPoint:Vector3=Vector3.ZERO
+@onready var drops: enemyDrops = $Drops
+
 var in_range:bool=false
 var current_health:int=0
 signal destroyed(self_reference:Enemy_ship)
@@ -60,7 +62,10 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 func take_damage():
 	current_health-=1
 	print(current_health)
+	
 	if current_health<=0:
+		GlobalStuff.sendloot.emit(drops.Drops)
+		
 		destroyed.emit(self)
 		queue_free()
 

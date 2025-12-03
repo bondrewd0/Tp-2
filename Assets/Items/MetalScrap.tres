@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://6o7k01g02xig"]
+
+[ext_resource type="Script" uid="uid://8c3ta8fxfles" path="res://Assets/Items/BaseItem.gd" id="1_mwxwf"]
+[ext_resource type="Texture2D" uid="uid://csivfmf5u8f2a" path="res://Assets/2D Icons/Icon31_15.png" id="2_no3sd"]
+
+[resource]
+script = ExtResource("1_mwxwf")
+name = "MetalScrap"
+texture = ExtResource("2_no3sd")
+metadata/_custom_type_script = "uid://8c3ta8fxfles"

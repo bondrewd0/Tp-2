@@ -1,5 +1,5 @@
 extends Node3D
-
+class_name Cannon
 @export var TurretBase:MeshInstance3D=null
 @export var TurretCanon:MeshInstance3D=null
 @export var BulletSpawnPos:Marker3D=null
