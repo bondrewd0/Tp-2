@@ -6,11 +6,12 @@ class_name PlayerShip
 @export var acceleration = 1.0
 @export var yaw_speed = 1.0
 @export var input_response: float = 10.0
-var forward_speed = 0.0
+@export var Inventory:ResContainer
+var forward_speed:float = 0.0
 
 var yaw_input: float = 0.0
 var moving = false
-
+var can_control:bool=true
 
 func get_input(delta):
 	if Input.is_action_pressed("forward"):
@@ -32,6 +33,17 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 	print("Player hit")
 	
 func _physics_process(delta: float) -> void:
+	if not can_control:
+		
+		if velocity!=Vector3.ZERO:
+			forward_speed=0
+			
+			velocity.x=move_toward(velocity.x,0,0.5)
+			velocity.z=move_toward(velocity.z,0,0.5)
+			move_and_slide()
+		else:
+			
+			return
 	get_input(delta)
 	transform.basis = transform.basis.rotated(transform.basis.y, yaw_input * yaw_speed * delta)
 	#transform.basis = transform.basis.rotated(transform.basis.z, roll_input * roll_speed * delta)
@@ -40,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	#rotate_y(rotation_speed * delta * yaw_input_left)
 	velocity = -transform.basis.z * forward_speed
 	move_and_collide(velocity * delta)
-	print(velocity)
+	#print(velocity)
 	#if Input.is_action_just_released("forward"):
 		#print("ay")
 		#velocity=Vector3.ZERO
@@ -70,7 +82,7 @@ func _physics_process(delta: float) -> void:
 #var backwards_speed:float=1
 #var moving:bool=false
 #var rotating:bool=false
-#var can_control:bool=true
+
 #func _physics_process(delta):
 	## Get input
 	#if  Input.is_action_just_pressed("test"):

@@ -79,4 +79,7 @@ offset_right = -60.0
 offset_bottom = 23.0
 size_flags_horizontal = 0
 
+[connection signal="value_changed" from="SettingsMenu/VolumeMaster" to="." method="_on_volume_master_value_changed"]
+[connection signal="value_changed" from="SettingsMenu/VolumeSFX" to="." method="_on_volume_sfx_value_changed"]
+[connection signal="value_changed" from="SettingsMenu/VolumeMusic" to="." method="_on_volume_music_value_changed"]
 [connection signal="pressed" from="SettingsMenu/Return" to="." method="_on_return_pressed"]

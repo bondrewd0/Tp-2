@@ -35,20 +35,21 @@ func _on_effect_anim_animation_finished(anim_name: StringName) -> void:
 		print("fading in")
 		effect_anim.play("FadeIn")
 	if anim_name=="FadeIn":
+		player_ref.rotation=Vector3(0,0,0)
 		un_dock.show()
 		vessel_stats.show()
 		for btn in Upgrades:
 			btn.show()
-			btn.check_purchasable(player_ref.Invontory.Inventory)
+			btn.check_purchasable(player_ref.Inventory.Inventory)
 
 
 func purchase(upgrade_req:Upgrade_req):
-	for item in player_ref.Invontory.Inventory:
+	for item in player_ref.Inventory.Inventory:
 		for ingredient in upgrade_req.Requiered_items:
 			if item.item.name==ingredient.item.name:
 				print("spending: ",item.item.name,", ", item.amount)
 				item.spend(ingredient.Requiered)
 				print("left: ",item.item.name,", ", item.amount)
 	for btn in Upgrades:
-		btn.check_purchasable(player_ref.Invontory.Inventory)
+		btn.check_purchasable(player_ref.Inventory.Inventory)
 	vessel_stats.load_variables()
