@@ -1,6 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://n56ye2bqgusy"]
 
 [ext_resource type="PackedScene" uid="uid://cs2y4ovu8rrsm" path="res://Scenes/PlayerElements/imperial.tscn" id="1_ppyta"]
+[ext_resource type="Script" uid="uid://ci687f5wuaq4s" path="res://Scripts/pivot.gd" id="2_abg7d"]
+[ext_resource type="Script" uid="uid://uspn5mamkeih" path="res://Scripts/camera_3d.gd" id="2_intuu"]
 [ext_resource type="PackedScene" uid="uid://dadxnsxi1f87y" path="res://Scenes/LevelElements/Station.tscn" id="3_6uqi0"]
 [ext_resource type="Texture2D" uid="uid://chent7dbo3kka" path="res://Scenes/LevelElements/plain_starfield_1.png" id="4_ppyta"]
 [ext_resource type="PackedScene" uid="uid://buypl3mdlgc3m" path="res://Scenes/EnemyElements/Enemy.tscn" id="5_ykrsh"]
@@ -51,6 +53,23 @@ _data = {
 &"FadeOut": SubResource("Animation_00tp4")
 }
 
+[node name="Test" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 21.4069, 0)
+shadow_enabled = true
+
+[node name="Nave" parent="." instance=ExtResource("1_ppyta")]
+
+[node name="Station" parent="." node_paths=PackedStringArray("BaseUi") instance=ExtResource("3_6uqi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28579, 0, 58.8861)
+BaseUi = NodePath("../CanvasLayer/BaseUI")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vbegm")
+
+[node name="Target" parent="." instance=ExtResource("4_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.103348, 0, 0)
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ykrsh"]
 panorama = ExtResource("4_ppyta")
 
@@ -129,6 +148,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_0m0f1")
 }
 
+[node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23, 32.254173, 46.823334)
+script = ExtResource("2_abg7d")
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.688355, 0.725374, 0, -0.725374, 0.688355, -0.6470001, 2.4778252, 0.04386902)
+fov = 97.3
+script = ExtResource("2_intuu")
 [node name="VesselStats" parent="CanvasLayer/BaseUI" instance=ExtResource("11_intuu")]
 visible = false
 layout_mode = 1
