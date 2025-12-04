@@ -34,8 +34,9 @@ func _on_effect_anim_animation_finished(anim_name: StringName) -> void:
 		GlobalStuff.force_Dock.emit()
 		print("fading in")
 		effect_anim.play("FadeIn")
-	if anim_name=="FadeIn":
 		player_ref.rotation=Vector3(0,0,0)
+	if anim_name=="FadeIn":
+		
 		un_dock.show()
 		vessel_stats.show()
 		for btn in Upgrades:

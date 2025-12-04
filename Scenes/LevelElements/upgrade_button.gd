@@ -9,7 +9,10 @@ var can_purchase:bool=true
 var copy_inventory:Array[Stack]
 signal  make_purchase(objects:Upgrade_req)
 @onready var ingredientsContainer: HBoxContainer = $Ingredients
+@onready var plus_simbol: TextureRect = $PlusSimbol
 
+var abled:Color=Color("009b40")
+var disabled_color:Color=Color("53575fff")
 func _ready() -> void:
 	text.text=UpgradeType+" upgrade"
 	for ingredient in Upgrade.Requiered_items:
@@ -24,6 +27,9 @@ func check_purchasable(player_inventory:Array[Stack]):
 	can_purchase=check_avaible()
 	if not can_purchase:
 		disabled= !can_purchase
+		self_modulate=disabled_color
+		text.modulate=disabled_color
+		plus_simbol.modulate=disabled_color
 		return
 	for ingredient in Upgrade.Requiered_items:
 		#print("needs: ",ingredient.item.name,", ", ingredient.Requiered)
@@ -36,8 +42,14 @@ func check_purchasable(player_inventory:Array[Stack]):
 	#print("can purchase: ",can_purchase)
 	if not can_purchase:
 		disabled=true
+		self_modulate=disabled_color
+		text.modulate=disabled_color
+		plus_simbol.modulate=disabled_color
 	else:
 		disabled=false
+		self_modulate=abled
+		text.modulate=abled
+		plus_simbol.modulate=abled
 
 
 func _on_pressed() -> void:
