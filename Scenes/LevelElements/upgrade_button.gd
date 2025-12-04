@@ -41,6 +41,7 @@ func check_purchasable(player_inventory:Array[Stack]):
 
 
 func _on_pressed() -> void:
+	print("check")
 	send_upgrade()
 	make_purchase.emit(Upgrade)
 	

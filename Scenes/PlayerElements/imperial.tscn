@@ -24,6 +24,7 @@ metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 [sub_resource type="Resource" id="Resource_75t4x"]
 script = ExtResource("5_qxk8b")
 item = ExtResource("6_75t4x")
+amount = 4
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
 [sub_resource type="Resource" id="Resource_sly8a"]
@@ -36,11 +37,12 @@ script = ExtResource("5_qxk8b")
 item = ExtResource("8_nh7om")
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
-[node name="Nave" type="CharacterBody3D" node_paths=PackedStringArray("Inventory")]
+[node name="Nave" type="CharacterBody3D" node_paths=PackedStringArray("Inventory", "Currrent_Vessel")]
 collision_layer = 8
 collision_mask = 20
 script = ExtResource("1_ppa00")
 Inventory = NodePath("Container")
+Currrent_Vessel = NodePath("Zenith")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.277954, 0, 0)

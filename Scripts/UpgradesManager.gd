@@ -8,6 +8,7 @@ var current_hp_upgrade:int=0
 var current_speed_upgrade:int=0
 var Current_ship:int=0
 var player_ref:PlayerShip=null
+var vessel_ref:Vessel=null
 const TEST_CANNON = preload("uid://dsdkpd6l22k5j")
 const IMPERIAL_SHIP = preload("uid://dcl547k5hqih4")
 const INSURGENT = preload("uid://sshykcxpid3")
@@ -17,9 +18,10 @@ const ZENITH = preload("uid://bl54v6k1upv11")
 
 func initiate(player:PlayerShip):
 	player_ref=player
+	vessel_ref=player.Currrent_Vessel
 	Cannon_counter= player_ref.Currrent_Vessel.Max_Cannons
-
 func place_turrets():
+	
 	print("changing turrets")
 	player_ref.remove_cannons()
 	player_ref.Currrent_Vessel.add_mounts_to_list()
@@ -37,7 +39,7 @@ func place_turrets():
 
 func upgrade_speed(value:float):
 	print("Upgrading speed")
-	player_ref.speed+=value
+	player_ref.max_speed+=value
 	current_speed_upgrade+=1
 
 func upgrade_health(value:int):

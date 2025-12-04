@@ -7,11 +7,16 @@ class_name PlayerShip
 @export var yaw_speed = 1.0
 @export var input_response: float = 10.0
 @export var Inventory:ResContainer
+@export var Currrent_Vessel:Vessel=null
 var forward_speed:float = 0.0
 
 var yaw_input: float = 0.0
 var moving = false
 var can_control:bool=true
+
+func _ready() -> void:
+	UpgradesManager.initiate(self)
+	
 
 func get_input(delta):
 	if Input.is_action_pressed("forward"):

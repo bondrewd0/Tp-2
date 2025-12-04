@@ -73,6 +73,7 @@ shadow_enabled = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryDisplay" parent="CanvasLayer" instance=ExtResource("13_mpmc1")]
+mouse_filter = 2
 
 [node name="BaseUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("Upgrades")]
 visible = false

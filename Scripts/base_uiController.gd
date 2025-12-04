@@ -53,3 +53,4 @@ func purchase(upgrade_req:Upgrade_req):
 	for btn in Upgrades:
 		btn.check_purchasable(player_ref.Inventory.Inventory)
 	vessel_stats.load_variables()
+	GlobalStuff.update_display.emit(player_ref.Inventory.Inventory)
