@@ -1,10 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://n56ye2bqgusy"]
+[gd_scene load_steps=18 format=3 uid="uid://n56ye2bqgusy"]
 
 [ext_resource type="PackedScene" uid="uid://cs2y4ovu8rrsm" path="res://Scenes/PlayerElements/imperial.tscn" id="1_ppyta"]
 [ext_resource type="Script" uid="uid://ci687f5wuaq4s" path="res://Scripts/pivot.gd" id="2_abg7d"]
 [ext_resource type="Script" uid="uid://uspn5mamkeih" path="res://Scripts/camera_3d.gd" id="2_intuu"]
 [ext_resource type="PackedScene" uid="uid://dadxnsxi1f87y" path="res://Scenes/LevelElements/Station.tscn" id="3_6uqi0"]
-[ext_resource type="PackedScene" uid="uid://s8403hqg2k0" path="res://Scenes/LevelElements/target.tscn" id="4_ykrsh"]
 [ext_resource type="PackedScene" uid="uid://buypl3mdlgc3m" path="res://Scenes/EnemyElements/Enemy.tscn" id="5_ykrsh"]
 [ext_resource type="PackedScene" uid="uid://clqjxb1q3xlfl" path="res://Scenes/LevelElements/CombatZone.tscn" id="6_g14j6"]
 [ext_resource type="PackedScene" uid="uid://dv4myiaf02uuk" path="res://Scenes/LevelElements/SpaceStation2.tscn" id="7_vbegm"]
@@ -137,9 +136,6 @@ UpgradeType = "Vessel"
 [node name="Station" parent="." node_paths=PackedStringArray("BaseUi") instance=ExtResource("3_6uqi0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28579, 0, 58.8861)
 BaseUi = NodePath("../CanvasLayer/BaseUI")
-
-[node name="Target" parent="." instance=ExtResource("4_ykrsh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.103348, 0, 0)
 
 [node name="CombatZone" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -89.5313)
