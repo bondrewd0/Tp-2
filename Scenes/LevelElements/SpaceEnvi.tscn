@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj6el2iii357b"]
+
+[ext_resource type="Texture2D" uid="uid://chent7dbo3kka" path="res://Scenes/LevelElements/plain_starfield_1.png" id="1_tiajs"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ykrsh"]
+panorama = ExtResource("1_tiajs")
+
+[sub_resource type="Sky" id="Sky_g14j6"]
+sky_material = SubResource("PanoramaSkyMaterial_ykrsh")
+
+[sub_resource type="Environment" id="Environment_vbegm"]
+background_mode = 2
+sky = SubResource("Sky_g14j6")
+
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_vbegm")
