@@ -1,0 +1,118 @@
+[gd_scene load_steps=8 format=3 uid="uid://bunstxu880ttf"]
+
+[ext_resource type="Script" uid="uid://b3iwcgntr63et" path="res://Scenes/LevelElements/dialoguesManager.gd" id="1_j0d5q"]
+[ext_resource type="PackedScene" uid="uid://c7cgg2e5aq0jk" path="res://Scenes/LevelElements/dialogue_box.tscn" id="2_kjdxo"]
+[ext_resource type="Texture2D" uid="uid://b0h76yj1t47ly" path="res://Assets/2D Icons/scene4.png" id="3_iga0m"]
+[ext_resource type="Texture2D" uid="uid://b33i1eqywwqp2" path="res://Assets/2D Icons/image1.jpg" id="3_jy256"]
+[ext_resource type="Texture2D" uid="uid://rwnek1y5tqtt" path="res://Assets/2D Icons/scene5.png" id="3_l6n26"]
+[ext_resource type="Texture2D" uid="uid://dbkwjkuvfk1m6" path="res://Assets/2D Icons/scene2.png" id="4_jy256"]
+[ext_resource type="Texture2D" uid="uid://dygqct7oqqpt5" path="res://Assets/2D Icons/scene3.png" id="4_kqd13"]
+
+[node name="DialogueScene" type="Control" node_paths=PackedStringArray("Boxes")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j0d5q")
+Boxes = [NodePath("DialogueBox"), NodePath("DialogueBox2"), NodePath("DialogueBox3"), NodePath("DialogueBox4"), NodePath("DialogueBox5")]
+Initial_Level = "res://Scenes/LevelElements/test.tscn"
+
+[node name="DialogueBox" parent="." instance=ExtResource("2_kjdxo")]
+layout_mode = 1
+Text2Display = "In a galaxy far, far away..."
+
+[node name="Scene" type="TextureRect" parent="DialogueBox"]
+show_behind_parent = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -475.0
+offset_right = 51.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_jy256")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="DialogueBox2" parent="." instance=ExtResource("2_kjdxo")]
+layout_mode = 1
+Text2Display = "the Zykari empire launch their plan to expand its power"
+
+[node name="Scene" type="TextureRect" parent="DialogueBox2"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -475.0
+offset_right = 51.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_jy256")
+
+[node name="DialogueBox3" parent="." instance=ExtResource("2_kjdxo")]
+layout_mode = 1
+Text2Display = " As a capable commanding officer, you and your crew are tasked to take control over the omega-23 region"
+
+[node name="Scene" type="TextureRect" parent="DialogueBox3"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -475.0
+offset_right = 51.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_kqd13")
+
+[node name="DialogueBox4" parent="." instance=ExtResource("2_kjdxo")]
+layout_mode = 1
+Text2Display = "The region is said to be the base of operations of various pirate ships and stations"
+
+[node name="Scene" type="TextureRect" parent="DialogueBox4"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -475.0
+offset_right = 51.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_iga0m")
+
+[node name="DialogueBox5" parent="." instance=ExtResource("2_kjdxo")]
+layout_mode = 1
+Text2Display = " To accomplish your task you will have to defeat all the ships guarding the base in combat."
+
+[node name="Scene" type="TextureRect" parent="DialogueBox5"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -475.0
+offset_right = 51.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_l6n26")
