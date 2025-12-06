@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7cgg2e5aq0jk"]
+
+[ext_resource type="Texture2D" uid="uid://cwragolb26qg8" path="res://Assets/1Bit_UI_pack_byBatuhan/TextBox.tres" id="1_v045p"]
+[ext_resource type="Texture2D" uid="uid://21vricyf18d4" path="res://Assets/1Bit_UI_pack_byBatuhan/PrevBtn.tres" id="2_m3mnk"]
+[ext_resource type="Script" uid="uid://u7a51r3piggx" path="res://Scenes/LevelElements/dialogue_box.gd" id="2_vltga"]
+[ext_resource type="Texture2D" uid="uid://cqfxjjaux0lby" path="res://Assets/1Bit_UI_pack_byBatuhan/NextBtn.tres" id="3_quw2w"]
+[ext_resource type="FontFile" uid="uid://dgpvueor5aaqv" path="res://Assets/Fonts/ByteBounce.ttf" id="4_quw2w"]
+
+[sub_resource type="Theme" id="Theme_vltga"]
+default_font = ExtResource("4_quw2w")
+default_font_size = 38
+
+[node name="DialogueBox" type="TextureRect"]
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+custom_minimum_size = Vector2(1050, 170)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -525.0
+offset_top = -170.0
+offset_right = 525.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_v045p")
+script = ExtResource("2_vltga")
+
+[node name="PrevScene" type="TextureButton" parent="."]
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 102.0
+offset_top = 101.0
+offset_right = 122.0
+offset_bottom = 121.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("2_m3mnk")
+stretch_mode = 3
+
+[node name="NextScene" type="TextureButton" parent="."]
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 909.0
+offset_top = 101.0
+offset_right = 929.0
+offset_bottom = 121.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("3_quw2w")
+stretch_mode = 3
+
+[node name="Dialogue" type="RichTextLabel" parent="."]
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 153.0
+offset_top = 31.0
+offset_right = 926.0
+offset_bottom = 139.0
+mouse_filter = 2
+theme = SubResource("Theme_vltga")
+text = "Long ago in a distant land, I, Aku, the shape shifting master of darkness unleashed an unspeakable evil, but a foolish Samurai warrior wielding a magic sword stepped forth to oppose me!"
+scroll_active = false
+
+[connection signal="pressed" from="PrevScene" to="." method="_on_prev_scene_pressed"]
+[connection signal="pressed" from="NextScene" to="." method="_on_next_scene_pressed"]

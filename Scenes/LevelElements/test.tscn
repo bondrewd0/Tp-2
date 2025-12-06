@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://n56ye2bqgusy"]
+[gd_scene load_steps=19 format=3 uid="uid://n56ye2bqgusy"]
 
 [ext_resource type="PackedScene" uid="uid://cs2y4ovu8rrsm" path="res://Scenes/PlayerElements/imperial.tscn" id="1_ppyta"]
 [ext_resource type="Script" uid="uid://ci687f5wuaq4s" path="res://Scripts/pivot.gd" id="2_abg7d"]
 [ext_resource type="Script" uid="uid://uspn5mamkeih" path="res://Scripts/camera_3d.gd" id="2_intuu"]
 [ext_resource type="PackedScene" uid="uid://dadxnsxi1f87y" path="res://Scenes/LevelElements/Station.tscn" id="3_6uqi0"]
-[ext_resource type="Texture2D" uid="uid://chent7dbo3kka" path="res://Scenes/LevelElements/plain_starfield_1.png" id="4_ppyta"]
 [ext_resource type="PackedScene" uid="uid://s8403hqg2k0" path="res://Scenes/LevelElements/target.tscn" id="4_ykrsh"]
 [ext_resource type="PackedScene" uid="uid://buypl3mdlgc3m" path="res://Scenes/EnemyElements/Enemy.tscn" id="5_ykrsh"]
 [ext_resource type="PackedScene" uid="uid://clqjxb1q3xlfl" path="res://Scenes/LevelElements/CombatZone.tscn" id="6_g14j6"]
@@ -15,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d0oue6evpydap" path="res://Scenes/LevelElements/vessel_stats.tscn" id="11_bfx0o"]
 [ext_resource type="PackedScene" uid="uid://dac2p54ovwtl4" path="res://Scenes/LevelElements/upgrade_button.tscn" id="12_3dnqt"]
 [ext_resource type="PackedScene" uid="uid://v4q0mm7qttq8" path="res://Assets/Items/inventory_display.tscn" id="13_mpmc1"]
+[ext_resource type="PackedScene" uid="uid://cj6el2iii357b" path="res://Scenes/LevelElements/SpaceEnvi.tscn" id="15_mpmc1"]
 
 [sub_resource type="Animation" id="Animation_5tkv4"]
 resource_name = "FadeIn"
@@ -53,16 +53,6 @@ _data = {
 &"FadeIn": SubResource("Animation_5tkv4"),
 &"FadeOut": SubResource("Animation_00tp4")
 }
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ykrsh"]
-panorama = ExtResource("4_ppyta")
-
-[sub_resource type="Sky" id="Sky_g14j6"]
-sky_material = SubResource("PanoramaSkyMaterial_ykrsh")
-
-[sub_resource type="Environment" id="Environment_vbegm"]
-background_mode = 2
-sky = SubResource("Sky_g14j6")
 
 [node name="Test" type="Node3D"]
 
@@ -148,9 +138,6 @@ UpgradeType = "Vessel"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28579, 0, 58.8861)
 BaseUi = NodePath("../CanvasLayer/BaseUI")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_vbegm")
-
 [node name="Target" parent="." instance=ExtResource("4_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.103348, 0, 0)
 
@@ -173,6 +160,8 @@ script = ExtResource("2_abg7d")
 transform = Transform3D(1, 0, 0, 0, 0.688355, 0.725374, 0, -0.725374, 0.688355, -0.6470001, 2.4778252, 0.04386902)
 fov = 97.3
 script = ExtResource("2_intuu")
+
+[node name="WorldEnvironment" parent="." instance=ExtResource("15_mpmc1")]
 
 [connection signal="visibility_changed" from="CanvasLayer/BaseUI" to="CanvasLayer/BaseUI" method="_on_visibility_changed"]
 [connection signal="pressed" from="CanvasLayer/BaseUI/UnDock" to="CanvasLayer/BaseUI/UnDock" method="_on_pressed"]
