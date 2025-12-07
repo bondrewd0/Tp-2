@@ -8,15 +8,21 @@ class_name Cannon
 @export var Vel_Torre:float=0.5
 @onready var cooldown: Timer = $Cooldown
 @export var Bullet_path:PackedScene
+@onready var shoot_sound: AudioStreamPlayer3D = $"../ShootSound" 
+
+
 var target_locked:bool=false
 var can_shoot:bool=true
 func shoot():
 	#print("fire!!")
+	
 	var bullet_inst=Bullet_path.instantiate()
 	#print(bullet_inst)
+	
 	get_parent().get_parent().add_sibling(bullet_inst)
 	bullet_inst.transform=BulletSpawnPos.global_transform
 	bullet_inst.linear_velocity=BulletSpawnPos.global_transform.basis.z*-1*20
+	shoot_sound.play()
 	can_shoot=false
 
 

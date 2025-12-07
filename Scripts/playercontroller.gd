@@ -1,6 +1,7 @@
 # Example for CharacterBody3D arcade movement
 extends CharacterBody3D
 class_name PlayerShip
+@onready var hit_sound: AudioStreamPlayer3D = $HitSound
 
 @export var max_speed = 20.0
 @export var acceleration = 1.0
@@ -35,6 +36,7 @@ func get_input(delta):
 	#yaw_input = roll_input
 	
 func _on_hitbox_area_entered(area: Area3D) -> void:
+	hit_sound.play()
 	print("Player hit")
 	
 func _physics_process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://buypl3mdlgc3m"]
+[gd_scene load_steps=20 format=4 uid="uid://buypl3mdlgc3m"]
 
 [ext_resource type="Script" uid="uid://dt76rty87f85e" path="res://Scripts/test_dummy.gd" id="1_qutxh"]
 [ext_resource type="Material" uid="uid://bxkvqrigh8j54" path="res://Assets/3D Models/Ships/Battle-SpaceShip-Free-3D-Low-Poly-Models/Texture/textura1.tres" id="2_s30xx"]
@@ -7,6 +7,11 @@
 [ext_resource type="Script" uid="uid://byispcrvjc0fe" path="res://Assets/Items/LootTable.gd" id="5_tv7r2"]
 [ext_resource type="Script" uid="uid://kq6v5q4w4xvg" path="res://Assets/Items/ItemStack.gd" id="6_5ovo6"]
 [ext_resource type="Resource" uid="uid://6o7k01g02xig" path="res://Assets/Items/MetalScrap.tres" id="7_anyeu"]
+[ext_resource type="AudioStream" uid="uid://dqjx4fyp115ws" path="res://Assets/Sounds/Page 3 Destroy Metal Soundsnap.mp3" id="8_j7plx"]
+[ext_resource type="AudioStream" uid="uid://b0ewvp03d51k5" path="res://Assets/Sounds/PlayerShip/laser-gun-shot-sound-future-sci-fi-lazer-wobble-chakongaudio-174883.mp3" id="9_dus5t"]
+[ext_resource type="AudioStream" uid="uid://hhwrqft0yr8v" path="res://Assets/Sounds/EnemyShip/Explosion-1Edited.wav" id="10_d5orh"]
+[ext_resource type="AudioStream" uid="uid://cgavtkj5oh3qx" path="res://Assets/Sounds/EnemyShip/Explosion-2Edited.wav" id="11_ymffx"]
+[ext_resource type="AudioStream" uid="uid://b7bfkkqicwlx" path="res://Assets/Sounds/EnemyShip/Explosion-3Edited.wav" id="12_bgb8n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a8m7s"]
 size = Vector3(9.13928, 1, 16.4637)
@@ -56,6 +61,12 @@ script = ExtResource("6_5ovo6")
 item = ExtResource("7_anyeu")
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4nq70"]
+streams_count = 3
+stream_0/stream = ExtResource("10_d5orh")
+stream_1/stream = ExtResource("11_ymffx")
+stream_2/stream = ExtResource("12_bgb8n")
+
 [node name="EnemyT1" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 11
@@ -102,6 +113,18 @@ transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 
 script = ExtResource("5_tv7r2")
 Drops = Array[ExtResource("6_5ovo6")]([SubResource("Resource_j7plx")])
 
+[node name="HitSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_j7plx")
+bus = &"SFX"
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_dus5t")
+bus = &"SFX"
+
+[node name="EnemyDeath" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_4nq70")
+
 [connection signal="body_entered" from="FireZone" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="FireZone" to="." method="_on_fire_zone_body_exited"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="finished" from="EnemyDeath" to="." method="_on_enemy_death_finished"]

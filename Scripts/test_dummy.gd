@@ -8,6 +8,14 @@ class_name Enemy_ship
 @export var orbit_speed: float = 2.0       # How fast to circle around
 @export var OriginPoint:Vector3=Vector3.ZERO
 @onready var drops: enemyDrops = $Drops
+@onready var hit_sound: AudioStreamPlayer3D = $HitSound
+@onready var enemy_death: AudioStreamPlayer3D = $EnemyDeath
+@onready var enemy_t_1: Enemy_ship = $"."
+@onready var collision_shape_3d: CollisionShape3D = $Hitbox/CollisionShape3D
+
+
+
+
 
 var in_range:bool=false
 var current_health:int=0
@@ -60,15 +68,23 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 		take_damage()
 
 func take_damage():
+	hit_sound.play()
 	current_health-=1
 	print(current_health)
 	
+	
 	if current_health<=0:
 		GlobalStuff.sendloot.emit(drops.Drops)
-		
+		enemy_death.play()
+		enemy_t_1.hide()
+		collision_shape_3d.disabled = true
+		set_physics_process(false)
 		destroyed.emit(self)
-		queue_free()
-
+		
+func _on_enemy_death_finished() -> void:
+	print("finished playing death sound")
+	queue_free()
+	
 func stop_chase():
 	print("stopping")
 	Target=null
