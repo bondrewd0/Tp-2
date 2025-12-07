@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bunstxu880ttf"]
+[gd_scene load_steps=10 format=3 uid="uid://bunstxu880ttf"]
 
 [ext_resource type="Script" uid="uid://b3iwcgntr63et" path="res://Scenes/LevelElements/dialoguesManager.gd" id="1_j0d5q"]
 [ext_resource type="PackedScene" uid="uid://c7cgg2e5aq0jk" path="res://Scenes/LevelElements/dialogue_box.tscn" id="2_kjdxo"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://rwnek1y5tqtt" path="res://Assets/2D Icons/scene5.png" id="3_l6n26"]
 [ext_resource type="Texture2D" uid="uid://dbkwjkuvfk1m6" path="res://Assets/2D Icons/scene2.png" id="4_jy256"]
 [ext_resource type="Texture2D" uid="uid://dygqct7oqqpt5" path="res://Assets/2D Icons/scene3.png" id="4_kqd13"]
+[ext_resource type="FontFile" uid="uid://dgpvueor5aaqv" path="res://Assets/Fonts/ByteBounce.ttf" id="8_8mcgr"]
+
+[sub_resource type="Theme" id="Theme_q4ex8"]
+default_font = ExtResource("8_8mcgr")
+default_font_size = 38
 
 [node name="DialogueScene" type="Control" node_paths=PackedStringArray("Boxes")]
 layout_mode = 3
@@ -100,7 +105,7 @@ texture = ExtResource("3_iga0m")
 
 [node name="DialogueBox5" parent="." instance=ExtResource("2_kjdxo")]
 layout_mode = 1
-Text2Display = " To accomplish your task you will have to defeat all the ships guarding the base in combat."
+Text2Display = " To accomplish your task you will have to defeat all the ships guarding the base in combat, using your automatic cannons to attack when close."
 
 [node name="Scene" type="TextureRect" parent="DialogueBox5"]
 show_behind_parent = true
@@ -116,3 +121,16 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("3_l6n26")
+
+[node name="Dialogue2" type="RichTextLabel" parent="DialogueBox5"]
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 820.0
+offset_top = 106.0
+offset_right = 1593.0
+offset_bottom = 214.0
+mouse_filter = 2
+theme = SubResource("Theme_q4ex8")
+text = "Begin"
+scroll_active = false

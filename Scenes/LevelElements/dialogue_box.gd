@@ -14,9 +14,10 @@ func reset_text():
 	dialogue.visible_ratio=0.0
 
 func play_text():
+	print(dialogue.text.length())
 	dialogue.text=Text2Display
 	text_tween=create_tween()
-	text_tween.tween_property(dialogue,"visible_ratio",1.0,1)
+	text_tween.tween_property(dialogue,"visible_ratio",1.0,2)
 
 func _on_prev_scene_pressed() -> void:
 	prev_pressed.emit()
