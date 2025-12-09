@@ -31,7 +31,9 @@ func on_undocking():
 
 func _on_effect_anim_animation_finished(anim_name: StringName) -> void:
 	if anim_name=="FadeOut":
+		print(player_ref,"2")
 		GlobalStuff.force_Dock.emit()
+		print(player_ref,"3")
 		print("fading in")
 		effect_anim.play("FadeIn")
 		player_ref.rotation=Vector3(0,0,0)

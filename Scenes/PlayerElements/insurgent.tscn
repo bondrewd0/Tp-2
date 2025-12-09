@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://sshykcxpid3"]
+[gd_scene load_steps=15 format=4 uid="uid://sshykcxpid3"]
 
 [ext_resource type="Texture2D" uid="uid://brywcpkoa5jwg" path="res://Assets/3D Models/Ultimate Spaceships - May 2021/Insurgent/glTF/Insurgent_Insurgent_Orange.png" id="1_eol4o"]
 [ext_resource type="Script" uid="uid://cc5svxjfy5700" path="res://Scenes/PlayerElements/VesselController.gd" id="2_kpyuo"]
 [ext_resource type="PackedScene" uid="uid://dis37nb3sx1e5" path="res://Scenes/PlayerElements/marker_3d.tscn" id="3_tcn4k"]
+[ext_resource type="PackedScene" uid="uid://krx3n4vvbc35" path="res://Assets/3D Models/fireParticles.tscn" id="4_kh78v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mnxtb"]
 resource_name = "Texture"
@@ -43,6 +44,43 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nb61n")
 
+[sub_resource type="Gradient" id="Gradient_s08k6"]
+offsets = PackedFloat32Array(0, 0.3580247, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.39888868, 0.67665994, 0.9703625, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dn0ok"]
+gradient = SubResource("Gradient_s08k6")
+
+[sub_resource type="Curve" id="Curve_q6aol"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4yp3w"]
+curve = SubResource("Curve_q6aol")
+
+[sub_resource type="Curve" id="Curve_2tvp7"]
+_data = [Vector2(0, 0.029593706), 0.0, 0.0, 0, 0, Vector2(0.24361949, 0.99999994), 0.0, 0.0, 0, 0, Vector2(1, 0.39134276), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_26frp"]
+curve = SubResource("Curve_2tvp7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kcjrl"]
+resource_local_to_scene = true
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_26frp")
+color = Color(0.35992405, 0.41512913, 0.9545905, 1)
+color_ramp = SubResource("GradientTexture1D_dn0ok")
+emission_curve = SubResource("CurveTexture_4yp3w")
+
 [node name="Insurgent" type="MeshInstance3D"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_33j8w")
@@ -72,3 +110,13 @@ transform = Transform3D(-1.9670125e-08, 0, -0.45, 0, 0.45, 0, 0.45, 0, -1.967012
 
 [node name="Marker3D8" parent="." instance=ExtResource("3_tcn4k")]
 transform = Transform3D(-1.9670125e-08, 0, 0.45, 0, 0.45, 0, -0.45, 0, -1.9670125e-08, 0.8261564, 0.62068987, 2.2357113)
+
+[node name="FireEffect" parent="." instance=ExtResource("4_kh78v")]
+transform = Transform3D(1, 8.742278e-08, 8.742278e-08, -8.742278e-08, -4.371139e-08, 1, 8.742278e-08, -1, -4.371138e-08, 0.75257015, 0.17647731, -2.7204332)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_kcjrl")
+
+[node name="FireEffect2" parent="." instance=ExtResource("4_kh78v")]
+transform = Transform3D(1, 8.742278e-08, 8.742278e-08, -8.742278e-08, -4.371139e-08, 1, 8.742278e-08, -1, -4.371138e-08, -0.7997205, 0.17647731, -2.7204332)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_kcjrl")

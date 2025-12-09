@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://dcl547k5hqih4"]
+[gd_scene load_steps=16 format=4 uid="uid://dcl547k5hqih4"]
 
 [ext_resource type="Texture2D" uid="uid://dpohae8ns6jgg" path="res://Assets/3D Models/Ships/Imperial-20251025T235944Z-1-001/Imperial/glTF/Imperial_Imperial_Orange.png" id="1_whm1x"]
 [ext_resource type="Script" uid="uid://cc5svxjfy5700" path="res://Scenes/PlayerElements/VesselController.gd" id="2_xahrt"]
 [ext_resource type="PackedScene" uid="uid://dis37nb3sx1e5" path="res://Scenes/PlayerElements/marker_3d.tscn" id="3_4kt8m"]
+[ext_resource type="PackedScene" uid="uid://krx3n4vvbc35" path="res://Assets/3D Models/fireParticles.tscn" id="4_uhx5c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4ig0"]
 resource_name = "Texture"
@@ -42,6 +43,61 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ysp6v")
+
+[sub_resource type="Gradient" id="Gradient_wajnk"]
+offsets = PackedFloat32Array(0, 0.3580247, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.39888868, 0.67665994, 0.9703625, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dn0ok"]
+gradient = SubResource("Gradient_wajnk")
+
+[sub_resource type="Curve" id="Curve_h83f7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4yp3w"]
+curve = SubResource("Curve_h83f7")
+
+[sub_resource type="Curve" id="Curve_bqjh7"]
+_data = [Vector2(0, 0.029593706), 0.0, 0.0, 0, 0, Vector2(0.24361949, 0.99999994), 0.0, 0.0, 0, 0, Vector2(1, 0.39134276), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_26frp"]
+curve = SubResource("Curve_bqjh7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4kq6p"]
+resource_local_to_scene = true
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_26frp")
+color = Color(0.35992405, 0.41512913, 0.9545905, 1)
+color_ramp = SubResource("GradientTexture1D_dn0ok")
+emission_curve = SubResource("CurveTexture_4yp3w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6c82h"]
+resource_local_to_scene = true
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_26frp")
+color = Color(0.35992405, 0.41512913, 0.9545905, 1)
+color_ramp = SubResource("GradientTexture1D_dn0ok")
+emission_curve = SubResource("CurveTexture_4yp3w")
 
 [node name="Imperial" type="MeshInstance3D"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
@@ -84,3 +140,19 @@ transform = Transform3D(-2.1855694e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855694e-
 
 [node name="Marker3D12" parent="." instance=ExtResource("3_4kt8m")]
 transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, 2.7522967, 0.05614984, 6.619457)
+
+[node name="FireEffect" parent="." instance=ExtResource("4_uhx5c")]
+transform = Transform3D(1, 8.7422784e-08, 8.742278e-08, -8.742278e-08, -4.371139e-08, 1, 8.7422784e-08, -1, -4.371138e-08, -0.08252689, 0.17647731, -5.1337075)
+amount = 150
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_4kq6p")
+
+[node name="FireEffect2" parent="." instance=ExtResource("4_uhx5c")]
+transform = Transform3D(1, 8.7422784e-08, 8.742278e-08, -8.742278e-08, -4.371139e-08, 1, 8.7422784e-08, -1, -4.371138e-08, 3.262359, 0.17647731, -6.19412)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_6c82h")
+
+[node name="FireEffect3" parent="." instance=ExtResource("4_uhx5c")]
+transform = Transform3D(1, 8.7422784e-08, 8.742278e-08, -8.742278e-08, -4.371139e-08, 1, 8.7422784e-08, -1, -4.371138e-08, -3.062, 0.176, -6.194)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_6c82h")

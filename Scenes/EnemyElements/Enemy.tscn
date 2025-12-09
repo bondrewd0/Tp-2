@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=4 uid="uid://buypl3mdlgc3m"]
+[gd_scene load_steps=34 format=4 uid="uid://buypl3mdlgc3m"]
 
 [ext_resource type="Script" uid="uid://dt76rty87f85e" path="res://Scripts/test_dummy.gd" id="1_qutxh"]
 [ext_resource type="Material" uid="uid://bxkvqrigh8j54" path="res://Assets/3D Models/Ships/Battle-SpaceShip-Free-3D-Low-Poly-Models/Texture/textura1.tres" id="2_s30xx"]
-[ext_resource type="Material" uid="uid://ckcnf2vso1dbb" path="res://Assets/3D Models/Ships/Battle-SpaceShip-Free-3D-Low-Poly-Models/Texture/Texture2.tres" id="3_bjqmr"]
 [ext_resource type="PackedScene" uid="uid://dvy0pmm07vow1" path="res://Scenes/EnemyElements/EnemyCannon.tscn" id="4_e6d4v"]
 [ext_resource type="Script" uid="uid://byispcrvjc0fe" path="res://Assets/Items/LootTable.gd" id="5_tv7r2"]
 [ext_resource type="Script" uid="uid://kq6v5q4w4xvg" path="res://Assets/Items/ItemStack.gd" id="6_5ovo6"]
@@ -12,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://hhwrqft0yr8v" path="res://Assets/Sounds/EnemyShip/Explosion-1Edited.wav" id="10_d5orh"]
 [ext_resource type="AudioStream" uid="uid://cgavtkj5oh3qx" path="res://Assets/Sounds/EnemyShip/Explosion-2Edited.wav" id="11_ymffx"]
 [ext_resource type="AudioStream" uid="uid://b7bfkkqicwlx" path="res://Assets/Sounds/EnemyShip/Explosion-3Edited.wav" id="12_bgb8n"]
+[ext_resource type="PackedScene" uid="uid://krx3n4vvbc35" path="res://Assets/3D Models/fireParticles.tscn" id="13_ymffx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a8m7s"]
 size = Vector3(9.13928, 1, 16.4637)
@@ -67,6 +67,80 @@ stream_0/stream = ExtResource("10_d5orh")
 stream_1/stream = ExtResource("11_ymffx")
 stream_2/stream = ExtResource("12_bgb8n")
 
+[sub_resource type="Gradient" id="Gradient_7ottg"]
+offsets = PackedFloat32Array(0, 0.3580247, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.39888868, 0.67665994, 0.9703625, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d5orh"]
+gradient = SubResource("Gradient_7ottg")
+
+[sub_resource type="Curve" id="Curve_rqi8q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ymffx"]
+curve = SubResource("Curve_rqi8q")
+
+[sub_resource type="Curve" id="Curve_24cyj"]
+_data = [Vector2(0, 0.029593706), 0.0, 0.0, 0, 0, Vector2(0.24361949, 0.99999994), 0.0, 0.0, 0, 0, Vector2(1, 0.39134276), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bgb8n"]
+curve = SubResource("Curve_24cyj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bgb8n"]
+resource_local_to_scene = true
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_bgb8n")
+color = Color(0.81488, 0.29845583, 3.85046e-07, 1)
+color_ramp = SubResource("GradientTexture1D_d5orh")
+emission_curve = SubResource("CurveTexture_ymffx")
+
+[sub_resource type="Gradient" id="Gradient_bnqao"]
+offsets = PackedFloat32Array(0, 0.3580247, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.39888868, 0.67665994, 0.9703625, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dn0ok"]
+gradient = SubResource("Gradient_bnqao")
+
+[sub_resource type="Curve" id="Curve_dc02f"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4yp3w"]
+curve = SubResource("Curve_dc02f")
+
+[sub_resource type="Curve" id="Curve_sqplv"]
+_data = [Vector2(0, 0.029593706), 0.0, 0.0, 0, 0, Vector2(0.24361949, 0.99999994), 0.0, 0.0, 0, 0, Vector2(1, 0.39134276), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_26frp"]
+curve = SubResource("Curve_sqplv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ymffx"]
+resource_local_to_scene = true
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_26frp")
+color = Color(0.81488, 0.29845583, 3.85046e-07, 1)
+color_ramp = SubResource("GradientTexture1D_dn0ok")
+emission_curve = SubResource("CurveTexture_4yp3w")
+
 [node name="EnemyT1" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 11
@@ -74,7 +148,7 @@ gravity_scale = 0.0
 linear_damp = 4.0
 angular_damp = 2.0
 script = ExtResource("1_qutxh")
-Speed = 10.0
+Speed = 5.0
 circle_radius = 10.0
 orbit_speed = 1.5
 
@@ -86,7 +160,7 @@ shape = SubResource("BoxShape3D_a8m7s")
 transform = Transform3D(-6.64413e-09, 0, -0.152, 0, 0.152, 0, 0.152, 0, -6.64413e-09, 0, -0.873737, 0)
 mesh = SubResource("ArrayMesh_kjrpe")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("3_bjqmr")
+surface_material_override/0 = ExtResource("2_s30xx")
 
 [node name="FireZone" type="Area3D" parent="."]
 collision_layer = 0
@@ -104,7 +178,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.332336, 0, 1.08002)
 shape = SubResource("BoxShape3D_qutxh")
 
 [node name="EnemyCannon" parent="." instance=ExtResource("4_e6d4v")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 1.26806, 0.57418, 0)
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 1.4513664, 0.57418, 0)
 
 [node name="EnemyCannon2" parent="." instance=ExtResource("4_e6d4v")]
 transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, -1.45601, 0.57418, 0)
@@ -124,7 +198,10 @@ bus = &"SFX"
 [node name="EnemyDeath" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_4nq70")
 
-[connection signal="body_entered" from="FireZone" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="FireZone" to="." method="_on_fire_zone_body_exited"]
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="finished" from="EnemyDeath" to="." method="_on_enemy_death_finished"]
+[node name="FireEffect" parent="." instance=ExtResource("13_ymffx")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.68982404, 0.7685853, 6.566891)
+process_material = SubResource("ParticleProcessMaterial_bgb8n")
+
+[node name="FireEffect2" parent="." instance=ExtResource("13_ymffx")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.54175264, 0.7685853, 6.566891)
+process_material = SubResource("ParticleProcessMaterial_ymffx")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://bl54v6k1upv11"]
+[gd_scene load_steps=16 format=4 uid="uid://bl54v6k1upv11"]
 
 [ext_resource type="Texture2D" uid="uid://bkebahgkar6j8" path="res://Assets/3D Models/Ultimate Spaceships - May 2021/Zenith/glTF/Zenith_Zenith_Orange.png" id="1_pn7tx"]
 [ext_resource type="Script" uid="uid://cc5svxjfy5700" path="res://Scenes/PlayerElements/VesselController.gd" id="2_r8s6a"]
 [ext_resource type="PackedScene" uid="uid://dis37nb3sx1e5" path="res://Scenes/PlayerElements/marker_3d.tscn" id="3_ewln1"]
+[ext_resource type="PackedScene" uid="uid://krx3n4vvbc35" path="res://Assets/3D Models/fireParticles.tscn" id="4_ewln1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehva2"]
 resource_name = "Texture"
@@ -43,6 +44,59 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_i6rxs")
 
+[sub_resource type="Gradient" id="Gradient_ssksy"]
+offsets = PackedFloat32Array(0, 0.3580247, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.39888868, 0.67665994, 0.9703625, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4wigf"]
+gradient = SubResource("Gradient_ssksy")
+
+[sub_resource type="Curve" id="Curve_5doyy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fytkj"]
+curve = SubResource("Curve_5doyy")
+
+[sub_resource type="Curve" id="Curve_pqik6"]
+_data = [Vector2(0, 0.029593706), 0.0, 0.0, 0, 0, Vector2(0.24361949, 0.99999994), 0.0, 0.0, 0, 0, Vector2(1, 0.39134276), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_dyhwm"]
+curve = SubResource("Curve_pqik6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g6m0l"]
+resource_local_to_scene = true
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_dyhwm")
+color = Color(0.35992405, 0.41512913, 0.9545905, 1)
+color_ramp = SubResource("GradientTexture1D_4wigf")
+emission_curve = SubResource("CurveTexture_fytkj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ewln1"]
+resource_local_to_scene = true
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_dyhwm")
+color = Color(0.35992405, 0.41512913, 0.9545905, 1)
+color_ramp = SubResource("GradientTexture1D_4wigf")
+emission_curve = SubResource("CurveTexture_fytkj")
+
 [node name="Zenith" type="MeshInstance3D"]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_1inv6")
@@ -60,3 +114,15 @@ transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-
 
 [node name="Marker3D4" parent="." instance=ExtResource("3_ewln1")]
 transform = Transform3D(-1.7484556e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.7484556e-08, -1.1833767, -0.31192923, 1.0987334)
+
+[node name="FireEffect" parent="." instance=ExtResource("4_ewln1")]
+transform = Transform3D(1, 8.742278e-08, 8.742278e-08, -8.742278e-08, -4.371139e-08, 1, 8.742278e-08, -1, -4.371138e-08, 1.2724845, -0.29664564, -2.7204332)
+amount = 150
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_g6m0l")
+
+[node name="FireEffect2" parent="." instance=ExtResource("4_ewln1")]
+transform = Transform3D(1, 8.742278e-08, 8.742278e-08, -8.742278e-08, -4.371139e-08, 1, 8.742278e-08, -1, -4.371138e-08, -1.2326121, -0.29664564, -2.7204332)
+amount = 150
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_ewln1")

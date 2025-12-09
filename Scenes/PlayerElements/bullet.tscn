@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://bh4r0f0w8oter"]
+[gd_scene load_steps=16 format=4 uid="uid://bh4r0f0w8oter"]
 
 [ext_resource type="Script" uid="uid://dlnahwmir12y4" path="res://Scripts/bullet.gd" id="1_v7oki"]
 [ext_resource type="Texture2D" uid="uid://d3c7brde6sxak" path="res://Assets/3D Models/Rockets Missiles and Bombs - AurynSky/Textures/Blue.png" id="2_ulxon"]
+[ext_resource type="PackedScene" uid="uid://krx3n4vvbc35" path="res://Assets/3D Models/fireParticles.tscn" id="3_pkn4k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rtl8c"]
 size = Vector3(1, 1, 2.1933)
@@ -51,6 +52,43 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_u1t52")
 
+[sub_resource type="Gradient" id="Gradient_wajnk"]
+offsets = PackedFloat32Array(0, 0.3580247, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.39888868, 0.67665994, 0.9703625, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dn0ok"]
+gradient = SubResource("Gradient_wajnk")
+
+[sub_resource type="Curve" id="Curve_h83f7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4yp3w"]
+curve = SubResource("Curve_h83f7")
+
+[sub_resource type="Curve" id="Curve_bqjh7"]
+_data = [Vector2(0, 0.029593706), 0.0, 0.0, 0, 0, Vector2(0.24361949, 0.99999994), 0.0, 0.0, 0, 0, Vector2(1, 0.39134276), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_26frp"]
+curve = SubResource("Curve_bqjh7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pkn4k"]
+resource_local_to_scene = true
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 10, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_26frp")
+color = Color(0.81488, 0.29845583, 3.85046e-07, 1)
+color_ramp = SubResource("GradientTexture1D_dn0ok")
+emission_curve = SubResource("CurveTexture_4yp3w")
+
 [node name="Bullet" type="RigidBody3D"]
 collision_layer = 2
 collision_mask = 4
@@ -78,6 +116,12 @@ autostart = true
 transform = Transform3D(0.5, 0, 0, 0, -0.5, -7.54979e-08, 0, 7.54979e-08, -0.5, 0, 0, 0.80249596)
 mesh = SubResource("ArrayMesh_8qlfc")
 skeleton = NodePath("")
+
+[node name="FireEffect" parent="." instance=ExtResource("3_pkn4k")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 1.4391867)
+lifetime = 3.0
+preprocess = 10.0
+process_material = SubResource("ParticleProcessMaterial_pkn4k")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="DeSpawner" to="." method="_on_de_spawner_timeout"]

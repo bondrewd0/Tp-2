@@ -290,8 +290,9 @@ shadow_mesh = SubResource("ArrayMesh_p2k8e")
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_pti40"]
 radius = 30.0
 
-[node name="Station" type="Node3D"]
+[node name="Station" type="Node3D" node_paths=PackedStringArray("Staion_Mesh")]
 script = ExtResource("1_ad2ja")
+Staion_Mesh = NodePath("Mesh_HD")
 
 [node name="Mesh_HD" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

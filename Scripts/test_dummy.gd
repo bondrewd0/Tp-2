@@ -3,7 +3,6 @@ class_name Enemy_ship
 @export var MaxHealth:int=5
 @export var Target:Node3D=null
 @export var Speed: float = 100.0
-@export var attack_distance: float = 10.0  # Distance at which to start circling
 @export var circle_radius: float = 8.0     # Desired orbit radius
 @export var orbit_speed: float = 2.0       # How fast to circle around
 @export var OriginPoint:Vector3=Vector3.ZERO
@@ -12,17 +11,21 @@ class_name Enemy_ship
 @onready var enemy_death: AudioStreamPlayer3D = $EnemyDeath
 @onready var enemy_t_1: Enemy_ship = $"."
 @onready var collision_shape_3d: CollisionShape3D = $Hitbox/CollisionShape3D
+@onready var fire_zone: Area3D = $FireZone
+@onready var hitbox: Area3D = $Hitbox
+@onready var enemy_death_sound: AudioStreamPlayer3D = $EnemyDeath
 
-
-
-
-
+var random_orbi_dir:int=1
 var in_range:bool=false
 var current_health:int=0
 signal destroyed(self_reference:Enemy_ship)
 func _ready() -> void:
 	current_health=MaxHealth
 	GlobalStuff.player_away.connect(stop_chase)
+	fire_zone.body_entered.connect(_on_area_3d_body_entered)
+	fire_zone.body_exited.connect(_on_fire_zone_body_exited)
+	hitbox.area_entered.connect(_on_hitbox_area_entered)
+	enemy_death_sound.finished.connect(_on_enemy_death_finished)
 
 func _physics_process(delta: float) -> void:
 	if not Target: 
@@ -46,29 +49,33 @@ func _physics_process(delta: float) -> void:
 		var radius_error = distance - circle_radius
 		var corrective_force = direction_to_target * radius_error * 0.5    
 		# Apply the circling force
-		apply_central_force((tangent * orbit_speed + corrective_force) * Speed)
+		apply_central_force((tangent * (random_orbi_dir*orbit_speed) + corrective_force) * Speed)
 	if linear_velocity.length() > 0.1:  # Only rotate if moving
 		var look_direction = linear_velocity.normalized()
 		var target_transform = global_transform.looking_at(global_position + look_direction, Vector3.UP)
 		global_transform = global_transform.interpolate_with(target_transform, 5.0 * delta)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print("dentro")
+	set_radnom_dir()
+	print(random_orbi_dir)
 	in_range=true
 
+func set_radnom_dir():
+	random_orbi_dir=randi_range(-1,1)
+	if random_orbi_dir==0:
+		set_radnom_dir()
 
 func _on_fire_zone_body_exited(body: Node3D) -> void:
-	print("fuera")
 	in_range=false
 
 func _on_hitbox_area_entered(area: Area3D) -> void:
 	var check_bullet=area.get_parent()
 	if check_bullet is Bullet:
-		print("Hit")
 		take_damage()
 
 func take_damage():
 	hit_sound.play()
+	print("hitted")
 	current_health-=1
 	print(current_health)
 	
@@ -77,16 +84,15 @@ func take_damage():
 		GlobalStuff.sendloot.emit(drops.Drops)
 		enemy_death.play()
 		enemy_t_1.hide()
-		collision_shape_3d.disabled = true
+		 
+		collision_shape_3d.set_deferred("disabled",true)
 		set_physics_process(false)
 		destroyed.emit(self)
 		
 func _on_enemy_death_finished() -> void:
-	print("finished playing death sound")
 	queue_free()
 	
 func stop_chase():
-	print("stopping")
 	Target=null
 	in_range=false
 
@@ -104,4 +110,3 @@ func return_to_origin():
 
 func Heal_up():
 	current_health=MaxHealth
-	print("healed! ",current_health)
