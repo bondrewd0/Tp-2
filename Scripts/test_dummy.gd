@@ -6,7 +6,6 @@ class_name Enemy_ship
 @export var circle_radius: float = 8.0     # Desired orbit radius
 @export var orbit_speed: float = 2.0       # How fast to circle around
 @export var OriginPoint:Vector3=Vector3.ZERO
-@onready var drops: enemyDrops = $Drops
 @onready var hit_sound: AudioStreamPlayer3D = $HitSound
 @onready var enemy_death: AudioStreamPlayer3D = $EnemyDeath
 @onready var enemy_t_1: Enemy_ship = $"."
@@ -14,6 +13,9 @@ class_name Enemy_ship
 @onready var fire_zone: Area3D = $FireZone
 @onready var hitbox: Area3D = $Hitbox
 @onready var enemy_death_sound: AudioStreamPlayer3D = $EnemyDeath
+@export var Drops:Array[Stack]=[]
+@export var drop_multiplier:float=1
+
 
 var random_orbi_dir:int=1
 var in_range:bool=false
@@ -26,6 +28,13 @@ func _ready() -> void:
 	fire_zone.body_exited.connect(_on_fire_zone_body_exited)
 	hitbox.area_entered.connect(_on_hitbox_area_entered)
 	enemy_death_sound.finished.connect(_on_enemy_death_finished)
+	print(Drops)
+	for object in Drops:
+		var drop_amount=randi_range(5,10)
+		drop_amount*=drop_multiplier
+		print("amo", drop_amount)
+		object.add_amount(drop_amount)
+		print(object.amount)
 
 func _physics_process(delta: float) -> void:
 	if not Target: 
@@ -81,7 +90,7 @@ func take_damage():
 	
 	
 	if current_health<=0:
-		GlobalStuff.sendloot.emit(drops.Drops)
+		GlobalStuff.sendloot.emit(Drops)
 		enemy_death.play()
 		enemy_t_1.hide()
 		 

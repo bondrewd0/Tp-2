@@ -6,7 +6,7 @@ var enemies:int=0
 var Enemy_list:Array[Enemy_ship]
 const ORIGIN_POINT = preload("res://Scenes/LevelElements/origin_point.tscn")
 const STATION = preload("uid://dadxnsxi1f87y")
-
+@export var Drops:Array[Stack]=[]
 signal entering_combat
 signal conquered
 func _ready() -> void:
@@ -46,6 +46,7 @@ func guard_destroyed(child_ref:Enemy_ship):
 		var safe_Station:Base=STATION.instantiate()
 		safe_Station.Staion_Mesh=Station.Friend_mesh
 		add_child(safe_Station)
+		GlobalStuff.sendloot.emit(Drops)
 		conquered.emit()
 
 

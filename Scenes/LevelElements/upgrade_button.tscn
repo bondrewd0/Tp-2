@@ -1,22 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://dac2p54ovwtl4"]
+[gd_scene load_steps=10 format=3 uid="uid://dac2p54ovwtl4"]
 
 [ext_resource type="Texture2D" uid="uid://ctenks5dekhx2" path="res://Assets/1Bit_UI_pack_byBatuhan/UpgradeBtn.tres" id="1_4smjv"]
 [ext_resource type="Script" uid="uid://di6d7n1j52wwa" path="res://Scenes/LevelElements/upgrade_button.gd" id="1_wpax8"]
 [ext_resource type="Script" uid="uid://86wu8ttfodwd" path="res://Assets/Items/Ingredient.gd" id="2_xu4yi"]
-[ext_resource type="Resource" uid="uid://6o7k01g02xig" path="res://Assets/Items/MetalScrap.tres" id="3_4smjv"]
 [ext_resource type="Script" uid="uid://cp0olxk6wrol" path="res://Assets/Items/UpgradeRequierments.gd" id="4_vqkyg"]
 [ext_resource type="PackedScene" uid="uid://dqj368ylp1ovm" path="res://Scenes/LevelElements/plus_simbol.tscn" id="6_vqkyg"]
 [ext_resource type="FontFile" uid="uid://dgpvueor5aaqv" path="res://Assets/Fonts/ByteBounce.ttf" id="7_edu0g"]
 [ext_resource type="PackedScene" uid="uid://ci8b6bx6sty8b" path="res://Scenes/LevelElements/IngredientFrame.tscn" id="8_qi2bv"]
 
 [sub_resource type="Resource" id="Resource_edu0g"]
-script = ExtResource("2_xu4yi")
-item = ExtResource("3_4smjv")
-metadata/_custom_type_script = "uid://86wu8ttfodwd"
-
-[sub_resource type="Resource" id="Resource_qi2bv"]
+resource_local_to_scene = true
 script = ExtResource("4_vqkyg")
-Requiered_items = Array[ExtResource("2_xu4yi")]([SubResource("Resource_edu0g")])
 metadata/_custom_type_script = "uid://cp0olxk6wrol"
 
 [sub_resource type="Theme" id="Theme_qi2bv"]
@@ -32,7 +26,7 @@ offset_bottom = 113.0
 texture_normal = ExtResource("1_4smjv")
 stretch_mode = 0
 script = ExtResource("1_wpax8")
-Upgrade = SubResource("Resource_qi2bv")
+Upgrade = SubResource("Resource_edu0g")
 FramePath = ExtResource("8_qi2bv")
 
 [node name="PlusSimbol" parent="." instance=ExtResource("6_vqkyg")]

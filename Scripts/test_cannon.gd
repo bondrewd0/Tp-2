@@ -9,7 +9,7 @@ class_name Cannon
 @onready var cooldown: Timer = $Cooldown
 @export var Bullet_path:PackedScene
 @export var BulletSpeed:float=20
-@onready var shoot_sound: AudioStreamPlayer3D = $"../ShootSound" 
+@onready var shoot_sound: AudioStreamPlayer3D = $"ShootSound" 
 
 
 var target_locked:bool=false

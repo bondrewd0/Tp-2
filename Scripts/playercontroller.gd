@@ -59,3 +59,8 @@ func _physics_process(delta: float) -> void:
 	#rotate_y(rotation_speed * delta * yaw_input_left)
 	velocity = -transform.basis.z * forward_speed
 	move_and_collide(velocity * delta)
+
+func remove_cannons():
+	for child in get_children():
+		if child is Cannon:
+			child.queue_free()

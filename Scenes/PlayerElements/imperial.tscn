@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cs2y4ovu8rrsm"]
+[gd_scene load_steps=17 format=3 uid="uid://cs2y4ovu8rrsm"]
 
 [ext_resource type="Script" uid="uid://c85um32f7bejj" path="res://Scripts/playercontroller.gd" id="1_ppa00"]
 [ext_resource type="PackedScene" uid="uid://dsdkpd6l22k5j" path="res://Scenes/PlayerElements/test_cannon.tscn" id="3_ppa00"]
@@ -9,7 +9,6 @@
 [ext_resource type="Resource" uid="uid://chvom56qeetus" path="res://Assets/Items/Crystal.tres" id="8_75t4x"]
 [ext_resource type="Resource" uid="uid://bmeau320a0s0u" path="res://Assets/Items/TecChips.tres" id="8_nh7om"]
 [ext_resource type="PackedScene" uid="uid://bl54v6k1upv11" path="res://Scenes/PlayerElements/zenith.tscn" id="8_sly8a"]
-[ext_resource type="AudioStream" uid="uid://b0ewvp03d51k5" path="res://Assets/Sounds/PlayerShip/laser-gun-shot-sound-future-sci-fi-lazer-wobble-chakongaudio-174883.mp3" id="10_nh7om"]
 [ext_resource type="AudioStream" uid="uid://dqjx4fyp115ws" path="res://Assets/Sounds/Page 3 Destroy Metal Soundsnap.mp3" id="11_2yntf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_txcou"]
@@ -21,22 +20,25 @@ size = Vector3(6.42603, 1, 19.3982)
 [sub_resource type="Resource" id="Resource_qxk8b"]
 script = ExtResource("5_qxk8b")
 item = ExtResource("7_sly8a")
+amount = 20
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
 [sub_resource type="Resource" id="Resource_75t4x"]
 script = ExtResource("5_qxk8b")
 item = ExtResource("6_75t4x")
-amount = 4
+amount = 20
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
 [sub_resource type="Resource" id="Resource_sly8a"]
 script = ExtResource("5_qxk8b")
 item = ExtResource("8_75t4x")
+amount = 20
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
 [sub_resource type="Resource" id="Resource_2yntf"]
 script = ExtResource("5_qxk8b")
 item = ExtResource("8_nh7om")
+amount = 20
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
 [node name="Nave" type="CharacterBody3D" node_paths=PackedStringArray("Inventory", "Currrent_Vessel")]
@@ -70,10 +72,6 @@ script = ExtResource("4_y74d6")
 Inventory = Array[ExtResource("5_qxk8b")]([SubResource("Resource_qxk8b"), SubResource("Resource_75t4x"), SubResource("Resource_sly8a"), SubResource("Resource_2yntf")])
 
 [node name="Zenith" parent="." instance=ExtResource("8_sly8a")]
-
-[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("10_nh7om")
-bus = &"SFX"
 
 [node name="HitSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("11_2yntf")

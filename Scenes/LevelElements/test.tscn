@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://n56ye2bqgusy"]
+[gd_scene load_steps=44 format=3 uid="uid://n56ye2bqgusy"]
 
 [ext_resource type="Script" uid="uid://d20cq3c07f8am" path="res://Scenes/LevelElements/LevelManager.gd" id="1_1tr2c"]
 [ext_resource type="PackedScene" uid="uid://cs2y4ovu8rrsm" path="res://Scenes/PlayerElements/imperial.tscn" id="1_ppyta"]
@@ -10,11 +10,18 @@
 [ext_resource type="PackedScene" uid="uid://dv4myiaf02uuk" path="res://Scenes/LevelElements/SpaceStation2.tscn" id="7_vbegm"]
 [ext_resource type="Script" uid="uid://c6a5tl4117sjf" path="res://Scripts/base_uiController.gd" id="8_00tp4"]
 [ext_resource type="Script" uid="uid://dwglkjdb3s4k2" path="res://Scripts/ExitBtn.gd" id="8_ehkex"]
+[ext_resource type="Script" uid="uid://86wu8ttfodwd" path="res://Assets/Items/Ingredient.gd" id="8_soy1i"]
+[ext_resource type="Script" uid="uid://cp0olxk6wrol" path="res://Assets/Items/UpgradeRequierments.gd" id="9_hbkk2"]
 [ext_resource type="Script" uid="uid://c8ems8abutsdq" path="res://Scripts/dock.gd" id="9_xersf"]
 [ext_resource type="PackedScene" uid="uid://d0oue6evpydap" path="res://Scenes/LevelElements/vessel_stats.tscn" id="11_bfx0o"]
+[ext_resource type="Resource" uid="uid://chvom56qeetus" path="res://Assets/Items/Crystal.tres" id="11_hbkk2"]
 [ext_resource type="PackedScene" uid="uid://dac2p54ovwtl4" path="res://Scenes/LevelElements/upgrade_button.tscn" id="12_3dnqt"]
+[ext_resource type="Script" uid="uid://kq6v5q4w4xvg" path="res://Assets/Items/ItemStack.gd" id="12_ldbn7"]
 [ext_resource type="PackedScene" uid="uid://cbi518l4gpvjd" path="res://Scenes/EnemyElements/frigate.tscn" id="12_mpmc1"]
+[ext_resource type="Resource" uid="uid://fn27sfhyxa5s" path="res://Assets/Items/Credit.tres" id="13_gtg6h"]
 [ext_resource type="PackedScene" uid="uid://v4q0mm7qttq8" path="res://Assets/Items/inventory_display.tscn" id="13_mpmc1"]
+[ext_resource type="Resource" uid="uid://6o7k01g02xig" path="res://Assets/Items/MetalScrap.tres" id="14_soy1i"]
+[ext_resource type="Resource" uid="uid://bmeau320a0s0u" path="res://Assets/Items/TecChips.tres" id="15_hbkk2"]
 [ext_resource type="PackedScene" uid="uid://cj6el2iii357b" path="res://Scenes/LevelElements/SpaceEnvi.tscn" id="15_mpmc1"]
 
 [sub_resource type="Animation" id="Animation_5tkv4"]
@@ -55,9 +62,105 @@ _data = {
 &"FadeOut": SubResource("Animation_00tp4")
 }
 
+[sub_resource type="Resource" id="Resource_soy1i"]
+script = ExtResource("8_soy1i")
+item = ExtResource("13_gtg6h")
+Requiered = 10
+metadata/_custom_type_script = "uid://86wu8ttfodwd"
+
+[sub_resource type="Resource" id="Resource_hbkk2"]
+resource_local_to_scene = true
+script = ExtResource("9_hbkk2")
+Requiered_items = Array[ExtResource("8_soy1i")]([SubResource("Resource_soy1i")])
+metadata/_custom_type_script = "uid://cp0olxk6wrol"
+
+[sub_resource type="Resource" id="Resource_2kmvm"]
+script = ExtResource("8_soy1i")
+item = ExtResource("11_hbkk2")
+Requiered = 2
+metadata/_custom_type_script = "uid://86wu8ttfodwd"
+
+[sub_resource type="Resource" id="Resource_tbxpx"]
+script = ExtResource("8_soy1i")
+item = ExtResource("15_hbkk2")
+Requiered = 5
+metadata/_custom_type_script = "uid://86wu8ttfodwd"
+
+[sub_resource type="Resource" id="Resource_e2k8h"]
+script = ExtResource("8_soy1i")
+item = ExtResource("14_soy1i")
+Requiered = 20
+metadata/_custom_type_script = "uid://86wu8ttfodwd"
+
+[sub_resource type="Resource" id="Resource_ohsa3"]
+resource_local_to_scene = true
+script = ExtResource("9_hbkk2")
+Requiered_items = Array[ExtResource("8_soy1i")]([SubResource("Resource_2kmvm"), SubResource("Resource_tbxpx"), SubResource("Resource_e2k8h")])
+metadata/_custom_type_script = "uid://cp0olxk6wrol"
+
+[sub_resource type="Resource" id="Resource_0bfv0"]
+script = ExtResource("8_soy1i")
+item = ExtResource("15_hbkk2")
+Requiered = 5
+metadata/_custom_type_script = "uid://86wu8ttfodwd"
+
+[sub_resource type="Resource" id="Resource_tprxk"]
+script = ExtResource("8_soy1i")
+item = ExtResource("14_soy1i")
+Requiered = 10
+metadata/_custom_type_script = "uid://86wu8ttfodwd"
+
+[sub_resource type="Resource" id="Resource_fa0wr"]
+script = ExtResource("8_soy1i")
+item = ExtResource("13_gtg6h")
+Requiered = 5
+metadata/_custom_type_script = "uid://86wu8ttfodwd"
+
+[sub_resource type="Resource" id="Resource_iscyc"]
+resource_local_to_scene = true
+script = ExtResource("9_hbkk2")
+Requiered_items = Array[ExtResource("8_soy1i")]([SubResource("Resource_0bfv0"), SubResource("Resource_tprxk"), SubResource("Resource_fa0wr")])
+metadata/_custom_type_script = "uid://cp0olxk6wrol"
+
+[sub_resource type="Resource" id="Resource_0eiyy"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("11_hbkk2")
+amount = 2
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
+[sub_resource type="Resource" id="Resource_4dahi"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("13_gtg6h")
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
+[sub_resource type="Resource" id="Resource_vwpu8"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("14_soy1i")
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
+[sub_resource type="Resource" id="Resource_23ymo"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("13_gtg6h")
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
+[sub_resource type="Resource" id="Resource_05dow"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("15_hbkk2")
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
+[sub_resource type="Resource" id="Resource_ci1e7"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("14_soy1i")
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
+[sub_resource type="Resource" id="Resource_ldxyp"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("15_hbkk2")
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
 [node name="Test" type="Node3D" node_paths=PackedStringArray("EnemyStations", "UI")]
 script = ExtResource("1_1tr2c")
-EnemyStations = [NodePath("CombatZone3")]
+EnemyStations = [NodePath("CombatZone"), NodePath("CombatZone2"), NodePath("CombatZone3")]
 UI = NodePath("CanvasLayer/BaseUI")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -78,7 +181,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_00tp4")
-Upgrades = [NodePath("VBoxContainer/UpgradeButton"), NodePath("VBoxContainer/UpgradeButton2")]
+Upgrades = [NodePath("VBoxContainer/UpgradeButton"), NodePath("VBoxContainer/UpgradeButton2"), NodePath("VBoxContainer/UpgradeButton3")]
 
 [node name="UnDock" type="Button" parent="CanvasLayer/BaseUI"]
 layout_mode = 0
@@ -129,68 +232,134 @@ scale = Vector2(0.6, 0.6)
 visible = false
 layout_mode = 2
 UpgradeType = "Speed"
-StatIncrease = 1.0
+Upgrade = SubResource("Resource_hbkk2")
+StatIncrease = 0.5
 
 [node name="UpgradeButton2" parent="CanvasLayer/BaseUI/VBoxContainer" instance=ExtResource("12_3dnqt")]
 visible = false
 layout_mode = 2
 UpgradeType = "Vessel"
+Upgrade = SubResource("Resource_ohsa3")
+
+[node name="UpgradeButton3" parent="CanvasLayer/BaseUI/VBoxContainer" instance=ExtResource("12_3dnqt")]
+visible = false
+layout_mode = 2
+UpgradeType = "Cannons"
+Upgrade = SubResource("Resource_iscyc")
 
 [node name="Nave" parent="." instance=ExtResource("1_ppyta")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 135.4412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 95.74696)
 
 [node name="Station" parent="." node_paths=PackedStringArray("BaseUi") instance=ExtResource("3_6uqi0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28579, 0, 58.8861)
 BaseUi = NodePath("../CanvasLayer/BaseUI")
 
-[node name="CombatZone2" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -214.46132, 0, 36.615143)
-Station = NodePath("SpaceStation2")
-
-[node name="SpaceStation2" parent="CombatZone2" instance=ExtResource("7_vbegm")]
-
-[node name="Frigate" parent="CombatZone2" instance=ExtResource("12_mpmc1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.696747, 0, 0.80700684)
-MaxHealth = 1
-circle_radius = 60.0
-
 [node name="CombatZone" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -89.5313)
 Station = NodePath("SpaceStation2")
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_0eiyy")])
 
 [node name="EnemyT1" parent="CombatZone" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.768377, 0, -45.791298)
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_4dahi"), SubResource("Resource_vwpu8")])
 
 [node name="EnemyT2" parent="CombatZone" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.509695, 0, -56.020515)
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_23ymo")])
+drop_multiplier = 2.0
 
 [node name="EnemyT3" parent="CombatZone" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.547928, 0, 17.760002)
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_05dow")])
+drop_multiplier = 0.5
 
 [node name="EnemyT4" parent="CombatZone" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3232, 0, 41.678658)
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_ci1e7"), SubResource("Resource_ldxyp")])
 
 [node name="SpaceStation2" parent="CombatZone" instance=ExtResource("7_vbegm")]
 
-[node name="CombatZone3" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 189.06589, 0, 67.380844)
+[node name="CombatZone2" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 189.06589, 0, -277.95764)
 Station = NodePath("SpaceStation2")
 
-[node name="EnemyT1" parent="CombatZone3" instance=ExtResource("5_ykrsh")]
+[node name="EnemyT1" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.768377, 0, -45.791298)
 MaxHealth = 1
 Speed = 30.0
 circle_radius = 20.0
 
+[node name="EnemyT2" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.969116, 0, -45.79129)
+MaxHealth = 1
+Speed = 30.0
+circle_radius = 20.0
+
+[node name="EnemyT3" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.74089, 0, -31.888489)
+MaxHealth = 1
+Speed = 30.0
+circle_radius = 20.0
+
+[node name="EnemyT4" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.54991, 0, 4.305908)
+MaxHealth = 1
+Speed = 30.0
+circle_radius = 20.0
+
+[node name="EnemyT5" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.920258, 0, 4.305908)
+MaxHealth = 1
+Speed = 30.0
+circle_radius = 20.0
+
+[node name="EnemyT6" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.920258, 0, 48.37883)
+MaxHealth = 1
+Speed = 30.0
+circle_radius = 20.0
+
+[node name="EnemyT7" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.411346, 0, 48.37883)
+MaxHealth = 1
+Speed = 30.0
+circle_radius = 20.0
+
+[node name="EnemyT8" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.517868, 0, 56.57608)
+MaxHealth = 1
+Speed = 30.0
+circle_radius = 20.0
+
+[node name="SpaceStation2" parent="CombatZone2" instance=ExtResource("7_vbegm")]
+
+[node name="CombatZone3" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -214.46132, 0, -609.50916)
+Station = NodePath("SpaceStation2")
+
 [node name="SpaceStation2" parent="CombatZone3" instance=ExtResource("7_vbegm")]
+
+[node name="Frigate" parent="CombatZone3" instance=ExtResource("12_mpmc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.253922, 0, -50.24402)
+MaxHealth = 20
+circle_radius = 60.0
+
+[node name="EnemyT1" parent="CombatZone3" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.146194, 0, 0.4628296)
+
+[node name="EnemyT2" parent="CombatZone3" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.236526, 0, 3.197937)
+
+[node name="EnemyT3" parent="CombatZone3" instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.051361, 0, 56.94745)
 
 [node name="Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23, 32.254173, 46.823334)

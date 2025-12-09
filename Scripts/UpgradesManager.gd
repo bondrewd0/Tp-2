@@ -20,6 +20,7 @@ func initiate(player:PlayerShip):
 	player_ref=player
 	vessel_ref=player.Currrent_Vessel
 	Cannon_counter= player_ref.Currrent_Vessel.Max_Cannons
+	current_cannons=vessel_ref.Current_Cannons
 func place_turrets():
 	
 	print("changing turrets")
@@ -50,6 +51,7 @@ func upgrade_health(value:int):
 
 func increase_turrets():
 	current_cannons+=2
+	vessel_ref.Current_Cannons=current_cannons
 	place_turrets()
 
 func upgrade_vessel():

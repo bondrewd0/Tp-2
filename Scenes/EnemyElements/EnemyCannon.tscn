@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvy0pmm07vow1"]
+[gd_scene load_steps=8 format=3 uid="uid://dvy0pmm07vow1"]
 
 [ext_resource type="Script" uid="uid://cs61hej4ybwk" path="res://Scripts/test_cannon.gd" id="1_tt7e2"]
 [ext_resource type="PackedScene" uid="uid://ja8rbh65mfik" path="res://Scenes/EnemyElements/EnemyBullet.tscn" id="2_tmppy"]
 [ext_resource type="PackedScene" uid="uid://bi485bplbkh0h" path="res://Scenes/PlayerElements/TurretBase.tscn" id="3_ahrai"]
 [ext_resource type="PackedScene" uid="uid://b1b4m3pxpgqe8" path="res://Scenes/PlayerElements/turret.tscn" id="4_n4s4m"]
+[ext_resource type="AudioStream" uid="uid://b0ewvp03d51k5" path="res://Assets/Sounds/PlayerShip/laser-gun-shot-sound-future-sci-fi-lazer-wobble-chakongaudio-174883.mp3" id="5_8u8pb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7m54"]
 size = Vector3(1, 10, 29)
@@ -49,6 +50,10 @@ debug_color = Color(0, 0, 0.701961, 1)
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_8u8pb")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Base/Turret2/LockOn" to="." method="_on_lock_on_body_entered"]
 [connection signal="body_exited" from="Base/Turret2/LockOn" to="." method="_on_lock_on_body_exited"]

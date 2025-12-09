@@ -13,6 +13,7 @@ func _ready():
 		queue_free()
 	
 func add_mounts_to_list():
+	print("cannons ", Current_Cannons)
 	var added:int=0
 	for child in get_children():
 		if added<Current_Cannons:
