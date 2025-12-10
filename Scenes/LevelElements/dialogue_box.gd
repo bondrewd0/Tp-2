@@ -4,6 +4,7 @@ var text_tween:Tween
 @onready var dialogue: RichTextLabel = $Dialogue
 @onready var prev_scene: TextureButton = $PrevScene
 @onready var next_scene: TextureButton = $NextScene
+@onready var exit: Button = $Exit
 
 signal next_pressed
 signal prev_pressed
@@ -24,3 +25,7 @@ func _on_prev_scene_pressed() -> void:
 
 func _on_next_scene_pressed() -> void:
 	next_pressed.emit()
+
+
+func _on_exit_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Menus/MainMenuUI.tscn")

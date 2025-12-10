@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=3 uid="uid://c8lgbjtt2337e"]
+
+[ext_resource type="Texture2D" uid="uid://cwragolb26qg8" path="res://Assets/1Bit_UI_pack_byBatuhan/TextBox.tres" id="1_ddtvg"]
+[ext_resource type="Script" uid="uid://u7a51r3piggx" path="res://Scenes/LevelElements/dialogue_box.gd" id="2_1lpbb"]
+[ext_resource type="Texture2D" uid="uid://21vricyf18d4" path="res://Assets/1Bit_UI_pack_byBatuhan/PrevBtn.tres" id="3_3rq3c"]
+[ext_resource type="Texture2D" uid="uid://cqfxjjaux0lby" path="res://Assets/1Bit_UI_pack_byBatuhan/NextBtn.tres" id="4_gocgm"]
+[ext_resource type="FontFile" uid="uid://dgpvueor5aaqv" path="res://Assets/Fonts/ByteBounce.ttf" id="5_4f4ot"]
+[ext_resource type="Shader" uid="uid://csjyka7e5kcrp" path="res://Scenes/LevelElements/Grayscale.gdshader" id="6_3rq3c"]
+[ext_resource type="Texture2D" uid="uid://b33i1eqywwqp2" path="res://Assets/2D Icons/image1.jpg" id="6_rfyua"]
+[ext_resource type="Texture2D" uid="uid://dnyc4lq31y3no" path="res://Assets/1Bit_UI_pack_byBatuhan/1-bit_UI_byBatuhanK.png" id="7_1lpbb"]
+
+[sub_resource type="Theme" id="Theme_agihx"]
+default_font = ExtResource("5_4f4ot")
+default_font_size = 38
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gocgm"]
+shader = ExtResource("6_3rq3c")
+
+[sub_resource type="GDScript" id="GDScript_4f4ot"]
+script/source = "extends TextureRect
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rq3c"]
+atlas = ExtResource("7_1lpbb")
+region = Rect2(245, 10, 14, 19)
+
+[node name="Lose" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="DialogueBox" type="TextureRect" parent="."]
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+custom_minimum_size = Vector2(1050, 170)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 475.0
+offset_right = 1081.0
+offset_bottom = 645.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_ddtvg")
+script = ExtResource("2_1lpbb")
+
+[node name="PrevScene" type="TextureButton" parent="DialogueBox"]
+visible = false
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 102.0
+offset_top = 101.0
+offset_right = 122.0
+offset_bottom = 121.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("3_3rq3c")
+stretch_mode = 3
+
+[node name="NextScene" type="TextureButton" parent="DialogueBox"]
+visible = false
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 909.0
+offset_top = 101.0
+offset_right = 929.0
+offset_bottom = 121.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("4_gocgm")
+stretch_mode = 3
+
+[node name="Dialogue" type="RichTextLabel" parent="DialogueBox"]
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 153.0
+offset_top = 31.0
+offset_right = 926.0
+offset_bottom = 139.0
+mouse_filter = 2
+theme = SubResource("Theme_agihx")
+text = "You have been defeated"
+scroll_active = false
+
+[node name="Scene" type="TextureRect" parent="DialogueBox"]
+show_behind_parent = true
+texture_filter = 1
+material = SubResource("ShaderMaterial_gocgm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -463.0
+offset_right = 77.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_rfyua")
+expand_mode = 1
+stretch_mode = 3
+script = SubResource("GDScript_4f4ot")
+
+[node name="Exit" type="Button" parent="DialogueBox"]
+modulate = Color(0, 0.60784316, 0.2509804, 1)
+layout_mode = 0
+offset_left = 105.0
+offset_top = 74.0
+offset_right = 127.0
+offset_bottom = 101.0
+scale = Vector2(2, 2)
+icon = SubResource("AtlasTexture_3rq3c")
+
+[connection signal="pressed" from="DialogueBox/PrevScene" to="DialogueBox" method="_on_prev_scene_pressed"]
+[connection signal="pressed" from="DialogueBox/NextScene" to="DialogueBox" method="_on_next_scene_pressed"]
+[connection signal="pressed" from="DialogueBox/Exit" to="DialogueBox" method="_on_exit_pressed"]

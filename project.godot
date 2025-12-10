@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalStuff="*res://Scripts/GlobalStuff.gd"
 UpgradesManager="*res://Scripts/UpgradesManager.gd"
+Bgm="*res://Scenes/Music.tscn"
 
 [input]
 

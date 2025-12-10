@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=3 uid="uid://8rq2s5vr54t4"]
+
+[ext_resource type="Texture2D" uid="uid://cwragolb26qg8" path="res://Assets/1Bit_UI_pack_byBatuhan/TextBox.tres" id="1_yxlsi"]
+[ext_resource type="Texture2D" uid="uid://b33i1eqywwqp2" path="res://Assets/2D Icons/image1.jpg" id="2_0vboj"]
+[ext_resource type="Script" uid="uid://u7a51r3piggx" path="res://Scenes/LevelElements/dialogue_box.gd" id="2_fnvgm"]
+[ext_resource type="Texture2D" uid="uid://21vricyf18d4" path="res://Assets/1Bit_UI_pack_byBatuhan/PrevBtn.tres" id="3_dx4ii"]
+[ext_resource type="Texture2D" uid="uid://cqfxjjaux0lby" path="res://Assets/1Bit_UI_pack_byBatuhan/NextBtn.tres" id="4_0mb60"]
+[ext_resource type="FontFile" uid="uid://dgpvueor5aaqv" path="res://Assets/Fonts/ByteBounce.ttf" id="5_huhny"]
+[ext_resource type="Texture2D" uid="uid://dnyc4lq31y3no" path="res://Assets/1Bit_UI_pack_byBatuhan/1-bit_UI_byBatuhanK.png" id="7_dx4ii"]
+
+[sub_resource type="Theme" id="Theme_vltga"]
+default_font = ExtResource("5_huhny")
+default_font_size = 38
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mb60"]
+atlas = ExtResource("7_dx4ii")
+region = Rect2(245, 10, 14, 19)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueBox" type="TextureRect" parent="."]
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+custom_minimum_size = Vector2(1050, 170)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -525.0
+offset_top = -170.0
+offset_right = 525.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_yxlsi")
+script = ExtResource("2_fnvgm")
+
+[node name="PrevScene" type="TextureButton" parent="DialogueBox"]
+visible = false
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 102.0
+offset_top = 101.0
+offset_right = 122.0
+offset_bottom = 121.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("3_dx4ii")
+stretch_mode = 3
+
+[node name="NextScene" type="TextureButton" parent="DialogueBox"]
+visible = false
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 909.0
+offset_top = 101.0
+offset_right = 929.0
+offset_bottom = 121.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("4_0mb60")
+stretch_mode = 3
+
+[node name="Dialogue" type="RichTextLabel" parent="DialogueBox"]
+self_modulate = Color(0, 0.60929304, 0.25198242, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 153.0
+offset_top = 31.0
+offset_right = 926.0
+offset_bottom = 139.0
+mouse_filter = 2
+theme = SubResource("Theme_vltga")
+text = "Congratulations! you have defeated the evil Zykari empire!"
+scroll_active = false
+
+[node name="Scene" type="TextureRect" parent="DialogueBox"]
+show_behind_parent = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -475.0
+offset_right = 51.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_0vboj")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Exit" type="Button" parent="DialogueBox"]
+modulate = Color(0, 0.60784316, 0.2509804, 1)
+layout_mode = 0
+offset_left = 90.0
+offset_top = 92.0
+offset_right = 112.0
+offset_bottom = 119.0
+scale = Vector2(2, 2)
+icon = SubResource("AtlasTexture_0mb60")
+
+[connection signal="pressed" from="DialogueBox/PrevScene" to="DialogueBox" method="_on_prev_scene_pressed"]
+[connection signal="pressed" from="DialogueBox/NextScene" to="DialogueBox" method="_on_next_scene_pressed"]
+[connection signal="pressed" from="DialogueBox/Exit" to="DialogueBox" method="_on_exit_pressed"]
