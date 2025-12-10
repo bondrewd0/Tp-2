@@ -331,7 +331,7 @@ offset_bottom = 13.0
 Player_ref = NodePath("../../Nave")
 
 [node name="Nave" parent="." instance=ExtResource("1_ppyta")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 95.74696)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 111.02356)
 
 [node name="Station" parent="." node_paths=PackedStringArray("BaseUi") instance=ExtResource("3_6uqi0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.28579, 0, 58.8861)
