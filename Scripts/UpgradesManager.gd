@@ -14,7 +14,7 @@ const IMPERIAL_SHIP = preload("uid://dcl547k5hqih4")
 const INSURGENT = preload("uid://sshykcxpid3")
 const ZENITH = preload("uid://bl54v6k1upv11")
 
-
+signal mod_max_hp_bar
 
 func initiate(player:PlayerShip):
 	player_ref=player
@@ -47,11 +47,14 @@ func upgrade_health(value:int):
 	print("Upgrading health")
 	print(value)
 	current_hp_upgrade+=1
+	player_ref.HP+=value
+	mod_max_hp_bar.emit()
+	player_ref.heal_up()
 	pass
 
-func increase_turrets():
+func increase_turrets(value:float):
 	current_cannons+=2
-	vessel_ref.Current_Cannons=current_cannons
+	vessel_ref.set_cannon_attack_rate(value)
 	place_turrets()
 
 func upgrade_vessel():

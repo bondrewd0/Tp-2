@@ -24,3 +24,8 @@ func add_mounts_to_list():
 
 func get_mounts():
 	return Cannon_mounts
+
+func set_cannon_attack_rate(rate:float):
+	for child in get_children():
+		if child is Cannon:
+			child.change_cool_down(rate)

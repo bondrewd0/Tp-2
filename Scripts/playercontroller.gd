@@ -9,15 +9,17 @@ class_name PlayerShip
 @export var input_response: float = 10.0
 @export var Inventory:ResContainer
 @export var Currrent_Vessel:Vessel=null
+@export var HP:int=5
+var current_hp:int=0
 var forward_speed:float = 0.0
 
 var yaw_input: float = 0.0
 var moving = false
 var can_control:bool=true
-
+signal hp_changed
 func _ready() -> void:
 	UpgradesManager.initiate(self)
-	
+	current_hp=HP
 
 func get_input(delta):
 	if Input.is_action_pressed("forward"):
@@ -37,7 +39,12 @@ func get_input(delta):
 	
 func _on_hitbox_area_entered(area: Area3D) -> void:
 	hit_sound.play()
+	current_hp-=1
+	hp_changed.emit()
 	print("Player hit")
+	if current_hp<=0:
+		print("dead lol")
+	
 	
 func _physics_process(delta: float) -> void:
 	if not can_control:
@@ -64,3 +71,8 @@ func remove_cannons():
 	for child in get_children():
 		if child is Cannon:
 			child.queue_free()
+
+func heal_up():
+	current_hp=HP
+	hp_changed.emit()
+	

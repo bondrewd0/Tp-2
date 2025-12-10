@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://n56ye2bqgusy"]
+[gd_scene load_steps=46 format=3 uid="uid://n56ye2bqgusy"]
 
 [ext_resource type="Script" uid="uid://d20cq3c07f8am" path="res://Scenes/LevelElements/LevelManager.gd" id="1_1tr2c"]
 [ext_resource type="PackedScene" uid="uid://cs2y4ovu8rrsm" path="res://Scenes/PlayerElements/imperial.tscn" id="1_ppyta"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cbi518l4gpvjd" path="res://Scenes/EnemyElements/frigate.tscn" id="12_mpmc1"]
 [ext_resource type="Resource" uid="uid://fn27sfhyxa5s" path="res://Assets/Items/Credit.tres" id="13_gtg6h"]
 [ext_resource type="PackedScene" uid="uid://v4q0mm7qttq8" path="res://Assets/Items/inventory_display.tscn" id="13_mpmc1"]
+[ext_resource type="PackedScene" uid="uid://c1e2sdhhksqeu" path="res://Scenes/PlayerElements/hp_bar.tscn" id="14_4dahi"]
 [ext_resource type="Resource" uid="uid://6o7k01g02xig" path="res://Assets/Items/MetalScrap.tres" id="14_soy1i"]
 [ext_resource type="Resource" uid="uid://bmeau320a0s0u" path="res://Assets/Items/TecChips.tres" id="15_hbkk2"]
 [ext_resource type="PackedScene" uid="uid://cj6el2iii357b" path="res://Scenes/LevelElements/SpaceEnvi.tscn" id="15_mpmc1"]
@@ -100,23 +101,29 @@ metadata/_custom_type_script = "uid://cp0olxk6wrol"
 
 [sub_resource type="Resource" id="Resource_0bfv0"]
 script = ExtResource("8_soy1i")
-item = ExtResource("15_hbkk2")
-Requiered = 5
+item = ExtResource("13_gtg6h")
+Requiered = 3
 metadata/_custom_type_script = "uid://86wu8ttfodwd"
 
 [sub_resource type="Resource" id="Resource_tprxk"]
 script = ExtResource("8_soy1i")
-item = ExtResource("14_soy1i")
-Requiered = 10
+item = ExtResource("15_hbkk2")
+Requiered = 5
 metadata/_custom_type_script = "uid://86wu8ttfodwd"
 
 [sub_resource type="Resource" id="Resource_fa0wr"]
 script = ExtResource("8_soy1i")
-item = ExtResource("13_gtg6h")
+item = ExtResource("14_soy1i")
 Requiered = 5
 metadata/_custom_type_script = "uid://86wu8ttfodwd"
 
 [sub_resource type="Resource" id="Resource_iscyc"]
+resource_local_to_scene = true
+script = ExtResource("9_hbkk2")
+Requiered_items = Array[ExtResource("8_soy1i")]([SubResource("Resource_0bfv0"), SubResource("Resource_tprxk"), SubResource("Resource_fa0wr")])
+metadata/_custom_type_script = "uid://cp0olxk6wrol"
+
+[sub_resource type="Resource" id="Resource_eruo3"]
 resource_local_to_scene = true
 script = ExtResource("9_hbkk2")
 Requiered_items = Array[ExtResource("8_soy1i")]([SubResource("Resource_0bfv0"), SubResource("Resource_tprxk"), SubResource("Resource_fa0wr")])
@@ -181,7 +188,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("8_00tp4")
-Upgrades = [NodePath("VBoxContainer/UpgradeButton"), NodePath("VBoxContainer/UpgradeButton2"), NodePath("VBoxContainer/UpgradeButton3")]
+Upgrades = [NodePath("VBoxContainer/UpgradeButton"), NodePath("VBoxContainer/UpgradeButton2"), NodePath("VBoxContainer/UpgradeButton3"), NodePath("VBoxContainer/UpgradeButton4")]
 
 [node name="UnDock" type="Button" parent="CanvasLayer/BaseUI"]
 layout_mode = 0
@@ -246,6 +253,19 @@ visible = false
 layout_mode = 2
 UpgradeType = "Cannons"
 Upgrade = SubResource("Resource_iscyc")
+
+[node name="UpgradeButton4" parent="CanvasLayer/BaseUI/VBoxContainer" instance=ExtResource("12_3dnqt")]
+visible = false
+layout_mode = 2
+UpgradeType = "Health"
+Upgrade = SubResource("Resource_eruo3")
+StatIncrease = 2.0
+
+[node name="HPBar" parent="CanvasLayer" node_paths=PackedStringArray("Player_ref") instance=ExtResource("14_4dahi")]
+self_modulate = Color(0.27450982, 0.7764706, 0.34117648, 1)
+offset_right = 106.0
+offset_bottom = 13.0
+Player_ref = NodePath("../../Nave")
 
 [node name="Nave" parent="." instance=ExtResource("1_ppyta")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 95.74696)

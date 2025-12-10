@@ -38,7 +38,7 @@ func _on_effect_anim_animation_finished(anim_name: StringName) -> void:
 		effect_anim.play("FadeIn")
 		player_ref.rotation=Vector3(0,0,0)
 	if anim_name=="FadeIn":
-		
+		player_ref.heal_up()
 		un_dock.show()
 		vessel_stats.show()
 		for btn in Upgrades:

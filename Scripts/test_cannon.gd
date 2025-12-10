@@ -101,3 +101,6 @@ func _on_lock_on_body_exited(body: Node3D) -> void:
 func _on_radar_body_exited(body: Node3D) -> void:
 	#print("target lost")
 	Target=null
+
+func change_cool_down(reduced:float):
+	cooldown.wait_time-=reduced

@@ -1,15 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1e2sdhhksqeu"]
+[gd_scene load_steps=6 format=3 uid="uid://c1e2sdhhksqeu"]
 
 [ext_resource type="Texture2D" uid="uid://dlgrlbu7yikjm" path="res://Assets/1Bit_UI_pack_byBatuhan/StatBarBack.tres" id="1_8f1g2"]
 [ext_resource type="Texture2D" uid="uid://krb0eb3bq0mf" path="res://Assets/1Bit_UI_pack_byBatuhan/StatBarProgress.tres" id="2_bn7g0"]
 [ext_resource type="Script" uid="uid://bs0n38bd35htv" path="res://Scenes/PlayerElements/hp_bar.gd" id="3_bn7g0"]
+[ext_resource type="FontFile" uid="uid://dgpvueor5aaqv" path="res://Assets/Fonts/ByteBounce.ttf" id="4_2qb7f"]
+
+[sub_resource type="Theme" id="Theme_3grjq"]
+default_font = ExtResource("4_2qb7f")
+default_font_size = 25
 
 [node name="HPBar" type="TextureProgressBar"]
 texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(2, 2)
 max_value = 10.0
 value = 10.0
 texture_under = ExtResource("1_8f1g2")
 texture_progress = ExtResource("2_bn7g0")
 script = ExtResource("3_bn7g0")
+
+[node name="TextVal" type="RichTextLabel" parent="."]
+self_modulate = Color(0, 0.3688776, 0.15733218, 1)
+texture_filter = 1
+custom_minimum_size = Vector2(93, 18)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -14.0
+offset_right = 79.0
+offset_bottom = 18.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_3grjq")
+text = "100/100"
