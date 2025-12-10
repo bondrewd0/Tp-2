@@ -1,7 +1,8 @@
-# Example for CharacterBody3D arcade movement
+
 extends CharacterBody3D
 class_name PlayerShip
 @onready var hit_sound: AudioStreamPlayer3D = $HitSound
+@onready var effect_anim: AnimationPlayer = $"../Effect/EffectAnim"
 
 @export var max_speed = 20.0
 @export var acceleration = 1.0
@@ -10,6 +11,7 @@ class_name PlayerShip
 @export var Inventory:ResContainer
 @export var Currrent_Vessel:Vessel=null
 @export var HP:int=5
+var ded = false
 var current_hp:int=0
 var forward_speed:float = 0.0
 
@@ -43,8 +45,17 @@ func _on_hitbox_area_entered(area: Area3D) -> void:
 	hp_changed.emit()
 	print("Player hit")
 	if current_hp<=0:
+		effect_anim.play("FadeOutLose")
 		print("dead lol")
-	
+		#await effect_anim.animation_finished
+		
+		#Lose
+#func _process(delta: float) -> void:
+	#if ded == false:
+		
+		
+func change_level_lose():
+	get_tree().change_scene_to_file("res://Scenes/LevelElements/Lose.tscn")
 	
 func _physics_process(delta: float) -> void:
 	if not can_control:

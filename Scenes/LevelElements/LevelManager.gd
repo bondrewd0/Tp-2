@@ -1,6 +1,7 @@
 extends Node3D
 @export var EnemyStations:Array[CombatZone]
 @export var UI:Control=null
+@onready var effect_anim: AnimationPlayer = $Effect/EffectAnim
 
 var conquered_count:int=0
 
@@ -21,3 +22,8 @@ func check_victory():
 			conquered_count=0
 	if conquered_count==EnemyStations.size():
 		print("victory")
+		effect_anim.play("FadeOutWin")
+		
+		#Win
+func change_level_win():
+	get_tree().change_scene_to_file("res://Scenes/LevelElements/Win.tscn")

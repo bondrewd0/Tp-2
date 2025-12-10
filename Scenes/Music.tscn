@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://x8j7blwpn8b0"]
+
+[ext_resource type="AudioStream" uid="uid://do7f3tvbi4rar" path="res://Assets/Sounds/Music/sci-fi-moodtimeflow-194382.mp3" id="1_fghhr"]
+
+[node name="Music" type="Node"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_fghhr")
+autoplay = true
+bus = &"Music"

@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://djynltk46jt3r"]
+[gd_scene load_steps=8 format=3 uid="uid://djynltk46jt3r"]
 
 [ext_resource type="Script" uid="uid://dthpwyb7vv1ox" path="res://Scripts/main_menu.gd" id="1_fama2"]
 [ext_resource type="Theme" uid="uid://63np5755uwmg" path="res://Scripts/UI.tres" id="2_ot04k"]
 [ext_resource type="FontFile" uid="uid://cr01irqo212gm" path="res://Assets/Fonts/Geo-Regular.ttf" id="3_crvm5"]
 [ext_resource type="PackedScene" uid="uid://bctys1756xnoi" path="res://Scenes/Menus/settings_box.tscn" id="4_xgmdt"]
 [ext_resource type="PackedScene" uid="uid://d1f8mukabg4jg" path="res://Scenes/Menus/Main Menu.tscn" id="5_erwxa"]
+[ext_resource type="AudioStream" uid="uid://dd8e6ttuvgx78" path="res://Assets/Sounds/UI/sndSelect.wav" id="6_crvm5"]
+[ext_resource type="AudioStream" uid="uid://b6gkmda6et4cs" path="res://Assets/Sounds/UI/sndMenuClick4.wav" id="7_crvm5"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -62,6 +64,16 @@ offset_bottom = 454.0
 
 [node name="Node3D" parent="." instance=ExtResource("5_erwxa")]
 
+[node name="AudioClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_crvm5")
+bus = &"SFX"
+
+[node name="AudioHover" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_crvm5")
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="BoxContainer/MainMenu/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="BoxContainer/MainMenu/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="BoxContainer/MainMenu/Play" to="SettingsBox" method="_on_play_pressed"]
+[connection signal="mouse_entered" from="BoxContainer/MainMenu/Settings" to="." method="_on_settings_mouse_entered"]
 [connection signal="pressed" from="BoxContainer/MainMenu/Settings" to="." method="_on_settings_pressed"]

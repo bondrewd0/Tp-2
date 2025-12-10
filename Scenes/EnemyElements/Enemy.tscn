@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dt76rty87f85e" path="res://Scripts/test_dummy.gd" id="1_qutxh"]
 [ext_resource type="Material" uid="uid://bxkvqrigh8j54" path="res://Assets/3D Models/Ships/Battle-SpaceShip-Free-3D-Low-Poly-Models/Texture/textura1.tres" id="2_s30xx"]
 [ext_resource type="PackedScene" uid="uid://dvy0pmm07vow1" path="res://Scenes/EnemyElements/EnemyCannon.tscn" id="4_e6d4v"]
+[ext_resource type="AudioStream" uid="uid://13tmiv8akfp7" path="res://Assets/Sounds/Shoot/sndDrop.wav" id="5_dus5t"]
 [ext_resource type="AudioStream" uid="uid://dqjx4fyp115ws" path="res://Assets/Sounds/Page 3 Destroy Metal Soundsnap.mp3" id="8_j7plx"]
-[ext_resource type="AudioStream" uid="uid://b0ewvp03d51k5" path="res://Assets/Sounds/PlayerShip/laser-gun-shot-sound-future-sci-fi-lazer-wobble-chakongaudio-174883.mp3" id="9_dus5t"]
 [ext_resource type="AudioStream" uid="uid://hhwrqft0yr8v" path="res://Assets/Sounds/EnemyShip/Explosion-1Edited.wav" id="10_d5orh"]
 [ext_resource type="AudioStream" uid="uid://cgavtkj5oh3qx" path="res://Assets/Sounds/EnemyShip/Explosion-2Edited.wav" id="11_ymffx"]
 [ext_resource type="AudioStream" uid="uid://b7bfkkqicwlx" path="res://Assets/Sounds/EnemyShip/Explosion-3Edited.wav" id="12_bgb8n"]
@@ -180,7 +180,7 @@ stream = ExtResource("8_j7plx")
 bus = &"SFX"
 
 [node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("9_dus5t")
+stream = ExtResource("5_dus5t")
 bus = &"SFX"
 
 [node name="EnemyDeath" type="AudioStreamPlayer3D" parent="."]
