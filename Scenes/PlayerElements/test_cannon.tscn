@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bi485bplbkh0h" path="res://Scenes/PlayerElements/TurretBase.tscn" id="3_rvxy3"]
 [ext_resource type="Material" uid="uid://ddhg72wnhibks" path="res://Assets/3D Models/TurretMaterial.tres" id="4_ut53b"]
 [ext_resource type="PackedScene" uid="uid://b1b4m3pxpgqe8" path="res://Scenes/PlayerElements/turret.tscn" id="4_xv2xg"]
-[ext_resource type="AudioStream" uid="uid://b5b11e60coh0m" path="res://Assets/Sounds/Shoot/sndMisc1.wav" id="6_ut53b"]
+[ext_resource type="AudioStream" uid="uid://13tmiv8akfp7" path="res://Assets/Sounds/Shoot/sndDrop.wav" id="6_ut53b"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wq8r3"]
 material = ExtResource("4_ut53b")
