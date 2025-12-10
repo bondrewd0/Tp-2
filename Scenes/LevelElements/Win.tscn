@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=10 format=3 uid="uid://8rq2s5vr54t4"]
+=======
+[gd_scene load_steps=10 format=3 uid="uid://duxachfglriy4"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Texture2D" uid="uid://cwragolb26qg8" path="res://Assets/1Bit_UI_pack_byBatuhan/TextBox.tres" id="1_yxlsi"]
 [ext_resource type="Texture2D" uid="uid://b33i1eqywwqp2" path="res://Assets/2D Icons/image1.jpg" id="2_0vboj"]
