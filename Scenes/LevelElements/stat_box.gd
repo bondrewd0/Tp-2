@@ -13,9 +13,10 @@ func _ready() -> void:
 
 
 func load_variables():
+	print("updating")
 	speed_bar.max_value=UpgradesManager.Max_speed_upgrades
 	speed_bar.value=UpgradesManager.current_speed_upgrade
 	hp_bar.max_value=UpgradesManager.Max_HP_upgrades
 	hp_bar.value=UpgradesManager.current_hp_upgrade
-	cannon_count.text="%d/%d"%[UpgradesManager.current_cannons,UpgradesManager.Cannon_counter]
+	cannon_count.text="%1.1f/%d"%[UpgradesManager.current_fire_rate,2]
 	vessel_type.text="%d/3"%[UpgradesManager.Current_ship+1]

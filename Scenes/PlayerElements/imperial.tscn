@@ -20,25 +20,25 @@ size = Vector3(6.42603, 1, 19.3982)
 [sub_resource type="Resource" id="Resource_qxk8b"]
 script = ExtResource("5_qxk8b")
 item = ExtResource("7_sly8a")
-amount = 20
+amount = 50
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
 [sub_resource type="Resource" id="Resource_75t4x"]
 script = ExtResource("5_qxk8b")
 item = ExtResource("6_75t4x")
-amount = 20
+amount = 50
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
 [sub_resource type="Resource" id="Resource_sly8a"]
 script = ExtResource("5_qxk8b")
 item = ExtResource("8_75t4x")
-amount = 20
+amount = 50
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
 [sub_resource type="Resource" id="Resource_2yntf"]
 script = ExtResource("5_qxk8b")
 item = ExtResource("8_nh7om")
-amount = 20
+amount = 50
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
 [node name="Nave" type="CharacterBody3D" node_paths=PackedStringArray("Inventory", "Currrent_Vessel")]

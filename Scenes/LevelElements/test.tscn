@@ -253,6 +253,7 @@ visible = false
 layout_mode = 2
 UpgradeType = "Cannons"
 Upgrade = SubResource("Resource_iscyc")
+StatIncrease = 0.2
 
 [node name="UpgradeButton4" parent="CanvasLayer/BaseUI/VBoxContainer" instance=ExtResource("12_3dnqt")]
 visible = false

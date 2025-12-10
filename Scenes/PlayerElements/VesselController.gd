@@ -25,7 +25,16 @@ func add_mounts_to_list():
 func get_mounts():
 	return Cannon_mounts
 
-func set_cannon_attack_rate(rate:float):
+func get_firerate():
 	for child in get_children():
 		if child is Cannon:
+			print("cooldown ", child.cooldown.wait_time)
+			return child.cooldown.wait_time
+	return 2
+
+func set_cannon_attack_rate(rate:float):
+	print("reciebed ", rate)
+	for child in get_children():
+		if child is Cannon:
+			print("detected cannon")
 			child.change_cool_down(rate)

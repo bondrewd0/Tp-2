@@ -78,8 +78,7 @@ func send_upgrade():
 		"Health":
 			UpgradesManager.upgrade_health(StatIncrease)
 		"Cannons":
-			UpgradesManager.current_cannons+=2
-			UpgradesManager.place_turrets()
+			UpgradesManager.increase_turrets(StatIncrease)
 		"Vessel":
 			UpgradesManager.upgrade_vessel()
 			

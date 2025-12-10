@@ -103,4 +103,6 @@ func _on_radar_body_exited(body: Node3D) -> void:
 	Target=null
 
 func change_cool_down(reduced:float):
+	print("changing")
 	cooldown.wait_time-=reduced
+	print("changed ", cooldown.wait_time)

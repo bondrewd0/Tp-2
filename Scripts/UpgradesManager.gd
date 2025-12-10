@@ -2,6 +2,7 @@ extends Node
 
 var Cannon_counter:int=10
 var current_cannons:int=2
+var current_fire_rate:float=2
 var Max_speed_upgrades:int=10
 var Max_HP_upgrades:int=20
 var current_hp_upgrade:int=0
@@ -21,6 +22,8 @@ func initiate(player:PlayerShip):
 	vessel_ref=player.Currrent_Vessel
 	Cannon_counter= player_ref.Currrent_Vessel.Max_Cannons
 	current_cannons=vessel_ref.Current_Cannons
+	current_fire_rate=vessel_ref.get_firerate()
+	place_turrets()
 func place_turrets():
 	
 	print("changing turrets")
@@ -53,9 +56,11 @@ func upgrade_health(value:int):
 	pass
 
 func increase_turrets(value:float):
+	print("upgrading cannons")
 	current_cannons+=2
 	vessel_ref.set_cannon_attack_rate(value)
-	place_turrets()
+	current_fire_rate=vessel_ref.get_firerate()
+	print("Returned ",current_fire_rate)
 
 func upgrade_vessel():
 	print("upgrading vessel")
@@ -63,6 +68,8 @@ func upgrade_vessel():
 	if Current_ship>=2:
 		Current_ship=2
 	change_vessel()
+	var reduce_new_turrets=2-current_fire_rate
+	vessel_ref.set_cannon_attack_rate(reduce_new_turrets)
 
 func change_vessel():
 	print("changing vessel: ", Current_ship)
@@ -78,3 +85,4 @@ func change_vessel():
 	player_ref.Currrent_Vessel=null
 	player_ref.add_child(vessel_ins)
 	player_ref.Currrent_Vessel=vessel_ins
+	vessel_ref=player_ref.Currrent_Vessel

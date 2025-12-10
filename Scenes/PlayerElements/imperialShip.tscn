@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=4 uid="uid://dcl547k5hqih4"]
+[gd_scene load_steps=18 format=4 uid="uid://dcl547k5hqih4"]
 
 [ext_resource type="Texture2D" uid="uid://dpohae8ns6jgg" path="res://Assets/3D Models/Ships/Imperial-20251025T235944Z-1-001/Imperial/glTF/Imperial_Imperial_Orange.png" id="1_whm1x"]
 [ext_resource type="Script" uid="uid://cc5svxjfy5700" path="res://Scenes/PlayerElements/VesselController.gd" id="2_xahrt"]
 [ext_resource type="PackedScene" uid="uid://dis37nb3sx1e5" path="res://Scenes/PlayerElements/marker_3d.tscn" id="3_4kt8m"]
 [ext_resource type="PackedScene" uid="uid://krx3n4vvbc35" path="res://Assets/3D Models/fireParticles.tscn" id="4_uhx5c"]
+[ext_resource type="PackedScene" uid="uid://dsdkpd6l22k5j" path="res://Scenes/PlayerElements/test_cannon.tscn" id="5_wajnk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4ig0"]
 resource_name = "Texture"
@@ -99,6 +100,22 @@ color = Color(0.35992405, 0.41512913, 0.9545905, 1)
 color_ramp = SubResource("GradientTexture1D_dn0ok")
 emission_curve = SubResource("CurveTexture_4yp3w")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h83f7"]
+resource_local_to_scene = true
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_26frp")
+color = Color(0.35992405, 0.41512913, 0.9545905, 1)
+color_ramp = SubResource("GradientTexture1D_dn0ok")
+emission_curve = SubResource("CurveTexture_4yp3w")
+
 [node name="Imperial" type="MeshInstance3D"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gbbhb")
@@ -155,4 +172,34 @@ process_material = SubResource("ParticleProcessMaterial_6c82h")
 [node name="FireEffect3" parent="." instance=ExtResource("4_uhx5c")]
 transform = Transform3D(1, 8.7422784e-08, 8.742278e-08, -8.742278e-08, -4.371139e-08, 1, 8.7422784e-08, -1, -4.371138e-08, -3.062, 0.176, -6.194)
 amount = 100
-process_material = SubResource("ParticleProcessMaterial_6c82h")
+process_material = SubResource("ParticleProcessMaterial_h83f7")
+
+[node name="TestCannon" parent="." instance=ExtResource("5_wajnk")]
+transform = Transform3D(-2.1855701e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855701e-08, -1.5639995, 1.1604841, 6.411548)
+
+[node name="TestCannon2" parent="." instance=ExtResource("5_wajnk")]
+transform = Transform3D(-2.1855701e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855701e-08, -1.5639998, 1.1604841, 4.1763124)
+
+[node name="TestCannon3" parent="." instance=ExtResource("5_wajnk")]
+transform = Transform3D(-2.1855701e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855701e-08, -1.5639993, 1.1604841, 9.018908)
+
+[node name="TestCannon4" parent="." instance=ExtResource("5_wajnk")]
+transform = Transform3D(-2.1855687e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855687e-08, 0.95513374, 1.1604841, 9.018908)
+
+[node name="TestCannon5" parent="." instance=ExtResource("5_wajnk")]
+transform = Transform3D(-2.1855687e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855687e-08, 0.95513356, 1.1604841, 6.5820684)
+
+[node name="TestCannon6" parent="." instance=ExtResource("5_wajnk")]
+transform = Transform3D(-2.1855687e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855687e-08, 0.9551333, 1.1604841, 4.2290354)
+
+[node name="TestCannon7" parent="." instance=ExtResource("5_wajnk")]
+transform = Transform3D(-2.1855687e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855687e-08, 2.9586844, 0.7801243, 0.31691524)
+
+[node name="TestCannon8" parent="." instance=ExtResource("5_wajnk")]
+transform = Transform3D(-2.1855708e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855708e-08, -3.1647706, 0.7801243, 0.31691578)
+
+[node name="TestCannon9" parent="." instance=ExtResource("5_wajnk")]
+transform = Transform3D(-2.1855708e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.1855708e-08, -2.8293104, 0.4337319, 6.6752586)
+
+[node name="TestCannon10" parent="." instance=ExtResource("5_wajnk")]
+transform = Transform3D(-2.185568e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.185568e-08, 3.2443357, 0.4337319, 6.6752577)

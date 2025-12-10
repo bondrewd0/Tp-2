@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=4 uid="uid://bl54v6k1upv11"]
+[gd_scene load_steps=17 format=4 uid="uid://bl54v6k1upv11"]
 
 [ext_resource type="Texture2D" uid="uid://bkebahgkar6j8" path="res://Assets/3D Models/Ultimate Spaceships - May 2021/Zenith/glTF/Zenith_Zenith_Orange.png" id="1_pn7tx"]
 [ext_resource type="Script" uid="uid://cc5svxjfy5700" path="res://Scenes/PlayerElements/VesselController.gd" id="2_r8s6a"]
 [ext_resource type="PackedScene" uid="uid://dis37nb3sx1e5" path="res://Scenes/PlayerElements/marker_3d.tscn" id="3_ewln1"]
 [ext_resource type="PackedScene" uid="uid://krx3n4vvbc35" path="res://Assets/3D Models/fireParticles.tscn" id="4_ewln1"]
+[ext_resource type="PackedScene" uid="uid://dsdkpd6l22k5j" path="res://Scenes/PlayerElements/test_cannon.tscn" id="5_ssksy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehva2"]
 resource_name = "Texture"
@@ -126,3 +127,9 @@ transform = Transform3D(1, 8.742278e-08, 8.742278e-08, -8.742278e-08, -4.371139e
 amount = 150
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_ewln1")
+
+[node name="TestCannon" parent="." instance=ExtResource("5_ssksy")]
+transform = Transform3D(-1.7484556e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.7484556e-08, -1.0497389, -0.38111877, 1.1306924)
+
+[node name="TestCannon2" parent="." instance=ExtResource("5_ssksy")]
+transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 1.045305, -0.38111877, 1.1306926)
