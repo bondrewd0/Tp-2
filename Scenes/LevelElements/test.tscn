@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://n56ye2bqgusy"]
+[gd_scene load_steps=53 format=3 uid="uid://n56ye2bqgusy"]
 
 [ext_resource type="Script" uid="uid://d20cq3c07f8am" path="res://Scenes/LevelElements/LevelManager.gd" id="1_1tr2c"]
 [ext_resource type="PackedScene" uid="uid://cs2y4ovu8rrsm" path="res://Scenes/PlayerElements/imperial.tscn" id="1_ppyta"]
@@ -227,6 +227,33 @@ script = ExtResource("12_ldbn7")
 item = ExtResource("15_hbkk2")
 metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
 
+[sub_resource type="Resource" id="Resource_5ssug"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("11_hbkk2")
+amount = 4
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
+[sub_resource type="Resource" id="Resource_uxuan"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("13_gtg6h")
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
+[sub_resource type="Resource" id="Resource_f6oed"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("14_soy1i")
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
+[sub_resource type="Resource" id="Resource_rj4yq"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("15_hbkk2")
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
+[sub_resource type="Resource" id="Resource_6ul4t"]
+script = ExtResource("12_ldbn7")
+item = ExtResource("11_hbkk2")
+amount = 10
+metadata/_custom_type_script = "uid://kq6v5q4w4xvg"
+
 [node name="Test" type="Node3D" node_paths=PackedStringArray("EnemyStations", "UI")]
 script = ExtResource("1_1tr2c")
 EnemyStations = [NodePath("CombatZone"), NodePath("CombatZone2"), NodePath("CombatZone3")]
@@ -278,7 +305,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 1)
 
 [node name="EffectAnim" type="AnimationPlayer" parent="CanvasLayer/BaseUI/Effect"]
 libraries = {
@@ -373,60 +400,74 @@ Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_ci1e7"), SubResour
 [node name="CombatZone2" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 189.06589, 0, -277.95764)
 Station = NodePath("SpaceStation2")
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_5ssug")])
 
 [node name="EnemyT1" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.768377, 0, -45.791298)
 MaxHealth = 1
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_uxuan"), SubResource("Resource_f6oed"), SubResource("Resource_rj4yq")])
 
 [node name="EnemyT2" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.969116, 0, -45.79129)
 MaxHealth = 1
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_uxuan"), SubResource("Resource_f6oed"), SubResource("Resource_rj4yq")])
+drop_multiplier = 2.0
 
 [node name="EnemyT3" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.74089, 0, -31.888489)
 MaxHealth = 1
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_uxuan"), SubResource("Resource_f6oed")])
 
 [node name="EnemyT4" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.54991, 0, 4.305908)
 MaxHealth = 1
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_uxuan"), SubResource("Resource_f6oed"), SubResource("Resource_rj4yq")])
 
 [node name="EnemyT5" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.920258, 0, 4.305908)
 MaxHealth = 1
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_f6oed"), SubResource("Resource_rj4yq")])
+drop_multiplier = 1.2
 
 [node name="EnemyT6" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.920258, 0, 48.37883)
 MaxHealth = 1
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_uxuan"), SubResource("Resource_f6oed"), SubResource("Resource_rj4yq")])
 
 [node name="EnemyT7" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.411346, 0, 48.37883)
 MaxHealth = 1
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_f6oed")])
+drop_multiplier = 3.0
 
 [node name="EnemyT8" parent="CombatZone2" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.517868, 0, 56.57608)
 MaxHealth = 1
 Speed = 30.0
 circle_radius = 20.0
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_uxuan"), SubResource("Resource_f6oed")])
+drop_multiplier = 1.5
 
 [node name="SpaceStation2" parent="CombatZone2" instance=ExtResource("7_vbegm")]
 
 [node name="CombatZone3" parent="." node_paths=PackedStringArray("Station") instance=ExtResource("6_g14j6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -214.46132, 0, -609.50916)
 Station = NodePath("SpaceStation2")
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_6ul4t")])
 
 [node name="SpaceStation2" parent="CombatZone3" instance=ExtResource("7_vbegm")]
 
@@ -437,12 +478,16 @@ circle_radius = 60.0
 
 [node name="EnemyT1" parent="CombatZone3" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.146194, 0, 0.4628296)
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_uxuan"), SubResource("Resource_rj4yq")])
+drop_multiplier = 1.1
 
 [node name="EnemyT2" parent="CombatZone3" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.236526, 0, 3.197937)
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_uxuan"), SubResource("Resource_f6oed"), SubResource("Resource_rj4yq")])
 
 [node name="EnemyT3" parent="CombatZone3" instance=ExtResource("5_ykrsh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.051361, 0, 56.94745)
+Drops = Array[ExtResource("12_ldbn7")]([SubResource("Resource_uxuan"), SubResource("Resource_f6oed"), SubResource("Resource_rj4yq")])
 
 [node name="Pivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.23, 32.254173, 46.823334)
