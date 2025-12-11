@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8lgbjtt2337e"]
+[gd_scene load_steps=14 format=3 uid="uid://c8lgbjtt2337e"]
 
 [ext_resource type="Texture2D" uid="uid://cwragolb26qg8" path="res://Assets/1Bit_UI_pack_byBatuhan/TextBox.tres" id="1_ddtvg"]
 [ext_resource type="Script" uid="uid://u7a51r3piggx" path="res://Scenes/LevelElements/dialogue_box.gd" id="2_1lpbb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://csjyka7e5kcrp" path="res://Scenes/LevelElements/Grayscale.gdshader" id="6_3rq3c"]
 [ext_resource type="Texture2D" uid="uid://b33i1eqywwqp2" path="res://Assets/2D Icons/image1.jpg" id="6_rfyua"]
 [ext_resource type="Texture2D" uid="uid://dnyc4lq31y3no" path="res://Assets/1Bit_UI_pack_byBatuhan/1-bit_UI_byBatuhanK.png" id="7_1lpbb"]
+[ext_resource type="Script" uid="uid://cofpqsw5nnewl" path="res://Scenes/LevelElements/exitBtn.gd" id="9_gocgm"]
 
 [sub_resource type="Theme" id="Theme_agihx"]
 default_font = ExtResource("5_4f4ot")
@@ -115,7 +116,8 @@ offset_right = 127.0
 offset_bottom = 101.0
 scale = Vector2(2, 2)
 icon = SubResource("AtlasTexture_3rq3c")
+script = ExtResource("9_gocgm")
 
 [connection signal="pressed" from="DialogueBox/PrevScene" to="DialogueBox" method="_on_prev_scene_pressed"]
 [connection signal="pressed" from="DialogueBox/NextScene" to="DialogueBox" method="_on_next_scene_pressed"]
-[connection signal="pressed" from="DialogueBox/Exit" to="DialogueBox" method="_on_exit_pressed"]
+[connection signal="pressed" from="DialogueBox/Exit" to="DialogueBox/Exit" method="_on_pressed"]
