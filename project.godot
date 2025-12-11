@@ -21,6 +21,10 @@ GlobalStuff="*res://Scripts/GlobalStuff.gd"
 UpgradesManager="*res://Scripts/UpgradesManager.gd"
 Bgm="*res://Scenes/Music.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 test={
